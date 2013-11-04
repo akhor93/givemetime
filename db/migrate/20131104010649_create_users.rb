@@ -1,0 +1,18 @@
+class CreateUsers < ActiveRecord::Migration
+  def change
+    create_table :users, {:primary_key => :id} do |t|
+      t.integer :id
+      t.string :first_name
+      t.string :last_name
+      t.boolean :admin
+      t.string :email
+      t.string :email_confirmed
+      t.string :password
+      t.string :password_salt
+      t.boolean :confirmed
+      t.timestamp :time_created
+
+      t.timestamps
+    end
+  end
+end

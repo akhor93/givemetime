@@ -1,0 +1,48 @@
+<div class="container">
+    <h1>Listing users</h1>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Confirmed</th>
+            <th>Time created</th>
+            <th>Admin</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <% @users.each do |user| %>
+        <tr>
+            <td>
+                <%= user.id %></td>
+            <td>
+                <%= user.first_name %></td>
+            <td>
+                <%= user.last_name %></td>
+            <td>
+                <%= user.email %></td>
+            <td>
+                <%= user.password %></td>
+            <td>
+                <%= user.confirmed %></td>
+            <td>
+                <%= user.time_created %></td>
+            <td>
+                <%= user.admin %></td>
+            <td>
+                <%= link_to 'Show', user, :class => "btn btn-info" %></td>
+            <td>
+                <%= link_to 'Edit', edit_user_path(user), :class => "btn btn-primary" %></td>
+            <td>
+                <%= link_to 'Destroy', user, method: :delete, :class => "btn btn-danger", data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %></table>
+
+    <br />
+
+    <%= link_to 'New User', new_user_path, :class => "btn btn-primary" %></div>
