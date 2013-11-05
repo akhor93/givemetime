@@ -4,8 +4,7 @@
   <title>Bootstrap 101 Template</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-
+  <link href="/assets/application.css" rel="stylesheet" media="screen">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -14,6 +13,69 @@
   <![endif]-->
 </head>
 <body>
+  <!-- Modal -->  
+  <div class="modal fade" id="sign_in_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-thin">
+      <div class="modal-content">
+        <div class="panel-group" id="signin_accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#signin_accordion" href="#login_collapse">
+                  Login
+                </a>
+              </h4>
+            </div>
+            <div id="login_collapse" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <form class="form-signin">
+                  <div class="form-group">
+                    <input type="text" placeholder="Email" class="form-control"></div>
+                  <div class="form-group">
+                    <input type="password" placeholder="Password" class="form-control"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#signin_accordion" href="#forgot_password_collapse">
+                  Forgot Password
+                </a>
+              </h4>
+            </div>
+            <div id="forgot_password_collapse" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div class="form-group">
+                  <input type="text" placeholder="Email" class="form-control"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.modal-content --> </div>
+    <!-- /.modal-dialog --> </div>
+  <!-- /.modal -->
+
+  <!-- Modal -->  
+  <div class="modal fade" id="sign_up_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Create Account</h4>
+        </div>
+        <div class="modal-body">...</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content --> </div>
+    <!-- /.modal-dialog --> </div>
+  <!-- /.modal -->
+
   <!-- Navbar -->
   <div class="navbar-wrapper">
     <div class="container">
@@ -31,15 +93,12 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign In</button>
-          </form>
+          <div class="navbar-form navbar-right">
+            <!-- Button trigger modal -->
+            <button class="btn btn-success" data-toggle="modal" data-target="#sign_in_modal">Sign In</button>
+            <!-- Button trigger modal -->
+            <button class="btn btn-primary" data-toggle="modal" data-target="#sign_up_modal">Sign Up</button>
+          </div>
         </div>
         <!-- /.navbar-collapse --> </nav>
     </div>
@@ -225,9 +284,9 @@
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.js"><\/script>')</script>
+  <script>window.jQuery || document.write('<script src="assets/jquery-1.10.2.js"><\/script>')</script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<script src="assets/bootstrap.min.js"></script>
 <script>
     $(document).ready(function() {
       $('.carousel').carousel();
