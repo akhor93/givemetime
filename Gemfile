@@ -36,3 +36,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use debugger
 # gem 'debugger'
+
+#Custom Gems HERE 
+gem 'simple_form'

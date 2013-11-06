@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email_confirmed
       t.string :password
       t.string :password_salt
+      t.string :password_digest
       t.boolean :confirmed
       t.timestamp :time_created
 

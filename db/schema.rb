@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20131104011211) do
     t.string   "email_confirmed"
     t.string   "password"
     t.string   "password_salt"
+    t.string   "password_digest"
     t.boolean  "confirmed"
     t.datetime "time_created"
     t.datetime "created_at",      :null => false

@@ -8,6 +8,7 @@ class LoadData < ActiveRecord::Migration
   	andrew.email_confirmed = "akhor93@stanford.edu"
   	andrew.password = "gloving"
   	andrew.password_salt = SecureRandom.hex
+    andrew.password_digest = Digest::SHA2.hexdigest(andrew.password + andrew.password_salt)
   	andrew.confirmed = true
   	andrew.time_created = Time.now
   	andrew.save
