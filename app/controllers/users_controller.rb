@@ -44,6 +44,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'Thank you for signing up for GiveMeTime!' }
         format.json { render json: @user, status: :created, location: @user }
       else
