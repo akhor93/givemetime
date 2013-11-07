@@ -28,14 +28,7 @@
             </div>
             <div id="login_collapse" class="panel-collapse collapse in">
               <div class="panel-body">
-                <%= simple_form_for @session, :html => {:class => 'form_horizontal'} do |f| %>
-                  <% if @user.errors.any? %>                
-                    <ul>
-                      <% @user.errors.full_messages.each do |message| %>                
-                        <li><%= message %></li>
-                      <% end %>
-                    </ul>
-                  <% end %>                             
+                <%= simple_form_for :session, :html => {:class => 'form_horizontal'} do |f| %>
                   <%= f.input :email, placeholder: "Email" %>                
                   <%= f.input :password, placeholder: "Password" %>                               
                   <br />                
@@ -83,7 +76,7 @@
         				<% end %>
         			</ul>
         		<% end %>        	
-        		<%= f.input :first_name, placeholder: "Andrew Khor" %>         
+        		<%= f.input :first_name, placeholder: "First Name" %>         
             <%= f.input :last_name, placeholder: "Last Name" %>  
             <%= f.input :email, placeholder: "Email" %>        	   	
         		<%= f.input :password, placeholder: "Password" %>        	
