@@ -1,20 +1,35 @@
 class SessionsController < ApplicationController
+  layout :choose_layout
+
   def new
   end
 
   def create
-  	user = User.find_by_email(params[:email])
-  	if user && user.authenticate(params[:password])
-  		session[:userid] = user.id
-  		redirect_to rooturl, notice: "Logged In!"
-  	else
-  		flash[:error] = "Wrong Uername or Password"
-  		redirect_to rooturl
+  	respond_to do |format|
+  		user = User.authenticate(params[:session][:email], params[:session][:password])
+  		if user
+  			session[:user_id] = user.id
+  			format.html { redirect_to user_path, notice: "Logged In!" }
+  			format.js {render :redirect} #javascript to do the redirect
+  		else
+  			format.html { render :new}
+  			format.js #defaults to create.js.erb
+  			#format.json { render json: user.errors}
+  			#flash[:error] = "Wrong Username or Password"
+  			#render 'new'
+  			#redirect_to root_url
+  		end
   	end
+  	
   end
 
   def destroy
-  	session[:userid] = nil
-  	redirect_to rooturl, notice: "Logged Out"
+  	session[:user_id] = nil
+  	redirect_to root_url, notice: "Logged Out"
+  end
+
+  private
+  def choose_layout
+  	(request.xhr?) ? nil : 'application'
   end
 end
