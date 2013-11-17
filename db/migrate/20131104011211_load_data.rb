@@ -12,7 +12,11 @@ class LoadData < ActiveRecord::Migration
     andrew.password_digest = BCrypt::Engine.hash_secret(password, andrew.password_salt)
   	andrew.confirmed = true
   	andrew.time_created = Time.now
-  	andrew.save
+  	if andrew.save
+      puts "Andrew saved"
+    else
+      puts andrew.errors.full_messages
+    end
   end
 
   def down

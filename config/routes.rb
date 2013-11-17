@@ -1,13 +1,8 @@
 GiveMeTime::Application.routes.draw do
-  get "sessions/new"
-
-  post "sessions/create"
-
-  get "sessions/destroy"
-
-  get "home/index"
-
-  resources :users
+  resource :session, :only => [:new, :create, :destroy]
+  resources :users, :only => [:index, :new, :create, :show, :edit, :update]
+  resource :admin, :only => :show
+  resource :home, :only => :index
 
 
   # The priority is based upon order of creation:

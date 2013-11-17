@@ -13,13 +13,7 @@
   <![endif]-->
 </head>
 <body>
-  <% if current_user %>
-  <%= link_to "Log Out", sessions_destroy_path %>
-<% else %>
-  <%= form_tag sessions_create_path do %>
-    Login PLEASE
-  <% end %>
-<% end %>
+<%= render :partial => 'sessions/login_status' %>
 
   <!-- Modal -->  
   <div class="modal fade" id="sign_in_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -142,7 +136,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">GiveMeTime</a>
+          <% if logged_in? %>
+            <%= link_to "GiveMeTime", user_path(current_user.id), class: "navbar-brand" %>
+          <% else %>
+            <%= link_to "GiveMeTime", root_url, class: "navbar-brand" %>
+          <% end %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -294,7 +292,6 @@
         <a href="#">Terms</a>
       </p>  
     </footer>
-<%= debug(params) if Rails.env.development? %>
   </div>
   <!-- /.container -->
 

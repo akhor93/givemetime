@@ -1,1 +1,2 @@
-window.location.pathname = '<%= "#{user_path(current_user.id)}" %>'; 
+<% puts "#{user_path(@user.id)}" %>
+window.location.pathname = '<%= "#{user_path(@user.id)}" %>'; 

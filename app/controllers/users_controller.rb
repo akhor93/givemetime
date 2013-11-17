@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :require_login, :only => [:show, :edit, :update]
+  before_filter :require_logout, :only => [:new, :create]
+
   # GET /users
   # GET /users.json
   def index
@@ -13,11 +16,15 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    if params[:id].eql?(current_user.id.to_s)
+      @user = User.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @user }
+      end
+    else
+      redirect_to user_path(current_user.id)
     end
   end
 
@@ -41,7 +48,9 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-
+    @user.confirmed = false
+    @user.time_created = Time.now
+    @user.admin = false
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
