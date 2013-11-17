@@ -14,61 +14,40 @@
 </div>
 <% end %>
 
-<div class="control-group">
-  <%= f.label :id, :class => 'control-label' %>
-  <br />
-  <div class="controls">
-    <%= f.number_field :id %></div>
-</div>
-<div class="control-group">
+<div class="form-group">
   <%= f.label :first_name, :class => 'control-label' %>
   <br />
   <div class="controls">
     <%= f.text_field :first_name, :class => 'text_field' %>
   </div>
 </div>
-<div class="control-group">
+<div class="form-group">
   <%= f.label :last_name, :class => 'control-label' %>
   <br />
   <div class="controls">
     <%= f.text_field :last_name, :class => 'text_field' %>
   </div>
 </div>
-<div class="control-group">
+<div class="form-group">
   <%= f.label :email, :class => 'control-label' %>
   <br />
   <div class="controls">
     <%= f.text_field :email, :class => 'text_field' %>
   </div>
 </div>
-<div class="control-group">
+<div class="form-group">
   <%= f.label :password, :class => 'control-label' %>
   <br />
   <div class="controls">
     <%= f.text_field :password, :class => 'text_field' %>
   </div>
 </div>
-<div class="control-group">
-  <%= f.label :confirmed, :class => 'control-label' %>
-  <br />
-  <div class="controls">
-    <%= f.check_box :confirmed %>
+<div class="form-group">      
+  <%= f.label :password_confirmation, "Password Confirmation", :class => "control-label" %>
+    <div>
+      <%= f.password_field :password_confirmation, placeholder: "Type Password Again", :class => "form-control" %>
+    </div>
   </div>
-</div>
-<div class="control-group">
-  <%= f.label :time_created, :class => 'control-label' %>
-  <br />
-  <div class="controls">
-    <%= f.datetime_select :time_created %>
-  </div>
-</div>
-<div class="control-group">
-  <%= f.label :admin %>
-  <br />
-  <div class="controls">
-    <%= f.check_box :admin %>
-  </div>
-</div>
 <div class="form-actions">
   <%= f.submit nil, :class => 'btn btn-primary'%>
   <%= link_to 'Show', @user, :class => 'btn btn-default' %>

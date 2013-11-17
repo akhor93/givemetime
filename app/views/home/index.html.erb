@@ -36,7 +36,7 @@
             </div>
             <div id="login_collapse" class="panel-collapse collapse in">
               <div class="panel-body">
-                 <%= render :partial => 'sessions/form' %>
+                  <%= render :partial => 'sessions/form' %>
               </div>
             </div>
           </div>
@@ -51,7 +51,13 @@
             <div id="forgot_password_collapse" class="panel-collapse collapse">
               <div class="panel-body">
                 <div class="form-group">
-                  <input type="text" placeholder="Email" class="form-control"></div>
+                  <input type="text" placeholder="Email" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                  <% #f.submit "Send Email", :class =>"btn btn-primary" %>
+                </div>
               </div>
             </div>
           </div>
@@ -286,9 +292,9 @@
         <a href="#">Privacy</a>
         &middot;
         <a href="#">Terms</a>
-      </p>
+      </p>  
     </footer>
-
+<%= debug(params) if Rails.env.development? %>
   </div>
   <!-- /.container -->
 

@@ -2,17 +2,18 @@ class SessionsController < ApplicationController
   layout :choose_layout
 
   def new
+      @user = User.new
   end
 
   def create
   	respond_to do |format|
-  		user = User.authenticate(params[:session][:email], params[:session][:password])
-  		if user
-  			session[:user_id] = user.id
+  		@user = User.authenticate(params[:session][:email], params[:session][:password])
+  		if @user
+  			session[:user_id] = @user.id
   			format.html { redirect_to user_path, notice: "Logged In!" }
   			format.js {render :redirect} #javascript to do the redirect
   		else
-  			format.html { render :new}
+  			format.html { render :new }
   			format.js #defaults to create.js.erb
   			#format.json { render json: user.errors}
   			#flash[:error] = "Wrong Username or Password"
