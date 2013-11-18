@@ -5,8 +5,7 @@ class LoadData < ActiveRecord::Migration
   	andrew.first_name = "Andrew"
   	andrew.last_name = "Khor"
   	andrew.admin = true
-  	andrew.email = "akhor93@stanford.edu"
-  	andrew.email_confirmed = "akhor93@stanford.edu"
+  	andrew.email = "akhor93@gmail.com"
     password = "gloving"
   	andrew.password_salt = BCrypt::Engine.generate_salt
     andrew.password_digest = BCrypt::Engine.hash_secret(password, andrew.password_salt)

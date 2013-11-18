@@ -1,0 +1,7 @@
+<% if current_user %>
+  <%= link_to "Log Out", session_path, :method => :delete %> <%= current_user.first_name + ' ' + current_user.last_name %>
+<% else %>
+  <%= form_tag session_path, :method => :post do %>
+    Login PLEASE
+  <% end %>
+<% end %>

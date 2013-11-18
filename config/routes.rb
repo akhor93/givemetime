@@ -1,6 +1,8 @@
 GiveMeTime::Application.routes.draw do
+  get '/auth/:provider/callback', to: 'users#show'
+
   resource :session, :only => [:new, :create, :destroy]
-  resources :users, :only => [:index, :new, :create, :show, :edit, :update]
+  resources :users, :only => [:new, :create, :show, :edit, :update]
   resource :admin, :only => :show
   resource :home, :only => :index
 
@@ -54,6 +56,8 @@ GiveMeTime::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+
+  #forwards logged in users to their show page when they try to access home page
   constraints lambda { |req| !req.session[:user_id].blank? } do
     root :to => "users#show", :as => "calendar"
   end
