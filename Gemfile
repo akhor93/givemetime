@@ -5,8 +5,8 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3'
-gem 'pg' #for Heroku
+gem 'sqlite3'
+#gem 'pg' #for Heroku
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -44,5 +44,4 @@ gem 'rails_12factor', group: :production
 
 #Google Calendar and Authentication
 gem 'google-api-client', :require => 'google/api_client'
-gem 'omniauth', '1.1.0'
-gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git' 
+gem 'signet-rails', '>= 0.0.6'

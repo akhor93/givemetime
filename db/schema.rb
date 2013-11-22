@@ -11,16 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131104011211) do
+ActiveRecord::Schema.define(:version => 20131122011629) do
 
-  create_table "users", :force => true do |t|
+  create_table "o_auth2_credentials", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.string   "signet"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "o_auth2_credentials", ["user_id"], :name => "index_o_auth2_credentials_on_user_id"
+
+  create_table "users", :primary_key => "uid", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin"
     t.string   "email"
-    t.string   "email_confirmed"
     t.string   "password_salt"
     t.string   "password_digest"
+    t.string   "gid"
+    t.boolean  "gid_confirmed"
     t.boolean  "confirmed"
     t.datetime "time_created"
     t.datetime "created_at",      :null => false

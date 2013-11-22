@@ -1,10 +1,12 @@
 GiveMeTime::Application.routes.draw do
-  get '/auth/:provider/callback', to: 'users#show'
+  get '/signet/google/auth_callback' => 'calendar#index'
 
   resource :session, :only => [:new, :create, :destroy]
   resources :users, :only => [:new, :create, :show, :edit, :update]
+  #resources :calendar, :only => [:index]
   resource :admin, :only => :show
   resource :home, :only => :index
+
 
 
   # The priority is based upon order of creation:

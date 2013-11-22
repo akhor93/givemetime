@@ -16,8 +16,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    #puts "REQUEST: " + request.inspect
+    #puts "OMNIAUTH: " + request.env['omniauth.auth']
+    
     if params[:id].eql?(current_user.id.to_s)
-      @user = User.find(params[:id])
+      @user = User.find(current_user.id.to_s)
 
       respond_to do |format|
         format.html # show.html.erb
@@ -89,5 +92,22 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+  def calendar
+    #puts "OMNIAUTH: " + request.env['omniauth.auth']
+    puts request.env.inspect
+    @auth = request.env['omniauth.auth']
+    if @auth
+    @token = @auth['credentials']['token']
+    client = Google::APIClient.new
+    client.authorization.access_token = @token
+    service = client.discovered_api('calendar','v3')
+    @result = client.execute(
+      :api_method => service.calendar_list.list,
+      :parameters => {},
+      :headers => {'Content-Type' => 'application/json'})
+  else
+  end
   end
 end
