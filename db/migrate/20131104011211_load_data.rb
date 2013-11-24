@@ -1,7 +1,6 @@
 class LoadData < ActiveRecord::Migration
   def up
   	andrew = User.new
-    andrew.id = 0;
   	andrew.first_name = "Andrew"
   	andrew.last_name = "Khor"
   	andrew.admin = true

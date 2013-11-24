@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	attr_accessible :admin, :confirmed, :email, :first_name, :last_name, :password, :password_confirmation, :time_created
 	
-	# before_validation :prep_email
+	before_validation :prep_email
 
 	attr_accessor :password
 
@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
 
 	has_many :o_auth2_credentials, dependent: :destroy
 
-	# validates_presence_of :first_name
-	# validates_presence_of :last_name
-	# validates_confirmation_of :password
-	# validates :email, uniqueness: true, presence: true, format: { with: /^[\w\.+-]+@([\w]+\.)+\w+$/ }
+	validates_presence_of :first_name
+	validates_presence_of :last_name
+	validates_confirmation_of :password
+	validates :email, uniqueness: true, presence: true, format: { with: /^[\w\.+-]+@([\w]+\.)+\w+$/ }
 	
 
 	private
