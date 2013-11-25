@@ -9,33 +9,30 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131122011629) do
+ActiveRecord::Schema.define(version: 20131104011211) do
 
-  create_table "o_auth2_credentials", :force => true do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.string   "signet"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
-  add_index "o_auth2_credentials", ["user_id"], :name => "index_o_auth2_credentials_on_user_id"
-
-  create_table "users", :primary_key => "uid", :force => true do |t|
+  create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin"
     t.string   "email"
     t.string   "password_salt"
     t.string   "password_digest"
-    t.string   "gid"
-    t.boolean  "gid_confirmed"
+    t.string   "uid"
+    t.string   "g_email"
+    t.string   "g_token"
+    t.string   "refresh_token"
+    t.integer  "expires_in"
+    t.datetime "issued_at"
     t.boolean  "confirmed"
     t.datetime "time_created"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

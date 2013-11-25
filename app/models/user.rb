@@ -7,12 +7,10 @@ class User < ActiveRecord::Base
 
 	before_save :encrypt_password
 
-	has_many :o_auth2_credentials, dependent: :destroy
-
 	validates_presence_of :first_name
 	validates_presence_of :last_name
 	validates_confirmation_of :password
-	validates :email, uniqueness: true, presence: true, format: { with: /^[\w\.+-]+@([\w]+\.)+\w+$/ }
+	#validates :email, uniqueness: true, presence: true, format: { with: /^[\w\.+-]+@([\w]+\.)+\w+$/ }
 	
 
 	private

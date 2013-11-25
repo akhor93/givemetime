@@ -1,13 +1,14 @@
 GiveMeTime::Application.routes.draw do
-  get '/signet/google/auth_callback' => 'calendar#index'
+  get '/oauth2authorize' => 'calendar#oauth2authorize', as: :oauth2authorize
+  get '/oauth2callback' => 'calendar#oauth2callback', as: :oauth2callback
 
   resource :session, :only => [:new, :create, :destroy]
   resources :users, :only => [:new, :create, :show, :edit, :update]
-  #resources :calendar, :only => [:index]
+  resources :calendar, :only => [:index]
   resource :admin, :only => :show
   resource :home, :only => :index
 
-
+  get '/logout' => 'sessions#destroy', as: :signout
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

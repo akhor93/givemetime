@@ -30,8 +30,7 @@ development:
   database: db/development
   username: Khor Laptop
   password: secret
-  host: localhost
-  encoding: unicode
+  encoding: utf8
   pool: 5
   timeout: 5000
 
