@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
+gem 'protected_attributes'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -45,6 +46,7 @@ gem 'settingslogic'
 gem 'rails_12factor', group: :production
 
 #Custom Gems HERE 
+gem 'validates_email_format_of'
 
 #Google Calendar and Authentication
 gem 'google-api-client', :require => 'google/api_client'

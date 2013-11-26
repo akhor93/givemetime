@@ -12,7 +12,6 @@ module UsersHelper
 		# Build a per-request oauth credential based on token stored in session
   		# which allows us to use a shared API client.
   		@authorization ||= (
-  			puts "updated user credentials"
   			auth = api_client.authorization.dup
   			auth.redirect_uri = 'http://localhost:3000/oauth2callback'
   			auth.update_token!(
