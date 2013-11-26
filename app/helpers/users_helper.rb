@@ -15,10 +15,10 @@ module UsersHelper
   			auth = api_client.authorization.dup
   			auth.redirect_uri = 'http://localhost:3000/oauth2callback'
   			auth.update_token!(
-  				:access_token => session[:access_token],
-  				:refresh_token => session[:refresh_token],
-  				:expires_in => session[:expires_in],
-  				:issued_at => session[:issued_at],
+  				:access_token => current_user.access_token,
+  				:refresh_token => current_user.refresh_token,
+  				:expires_in => current_user.expires_in,
+  				:issued_at => current_user.issued_at,
   				)
   			auth
   			)

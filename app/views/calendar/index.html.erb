@@ -1,0 +1,11 @@
+<% if logged_in? %>
+
+  <h1>Logged in</h1>
+  <%= debug @result.data %>
+  <!--<%= session.inspect %> -->
+
+<% else %>
+
+  <%= link_to 'Sign in', '/oath2authorize' %>
+
+<% end %>
