@@ -5,8 +5,8 @@ module UsersHelper
 		end
 	end
 
-	def api_client; Settings[:api_client]; end
-	def calendar_api; Settings[:calendar]; end
+	def api_client; $google_api_client; end
+	def calendar_api; $google_calendar_api; end
 
 	def user_credentials
 		# Build a per-request oauth credential based on token stored in session
@@ -19,7 +19,6 @@ module UsersHelper
   				:refresh_token => session[:refresh_token],
   				:expires_in => session[:expires_in],
   				:issued_at => session[:issued_at],
-  				:id_token => session[:id_token]
   				)
   			auth
   			)

@@ -16,9 +16,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    #puts "REQUEST: " + request.inspect
-    #puts "OMNIAUTH: " + request.env['omniauth.auth']
-    
     if params[:id].eql?(current_user.id.to_s)
       @user = User.find(current_user.id.to_s)
 

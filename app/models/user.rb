@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_accessible :admin, :confirmed, :email, :first_name, :last_name, :password, :password_confirmation, :time_created
+	attr_accessible :first_name, :last_name, :uid, :g_email, :access_token, :refresh_token, :expires_in, :issued_at
 	
 	before_validation :prep_email
 

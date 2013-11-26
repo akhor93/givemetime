@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.string :uid
       t.string :g_email
-      t.string :g_token
+      t.string :access_token
       t.string :refresh_token
       t.integer :expires_in
       t.timestamp :issued_at

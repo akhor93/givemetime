@@ -16,7 +16,7 @@ group :assets do
   gem 'coffee-rails', '~> 4.0.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.3.0'
 end
@@ -27,8 +27,6 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0', :require => "bcrypt"
 
 gem 'protected_attributes'
-
-gem 'settingslogic'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
@@ -48,7 +46,6 @@ gem 'rails_12factor', group: :production
 #Custom Gems HERE 
 gem 'validates_email_format_of'
 
+
 #Google Calendar and Authentication
 gem 'google-api-client', :require => 'google/api_client'
-
-#gem 'signet-rails', '>= 0.0.6'
