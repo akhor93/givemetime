@@ -1,3 +1,4 @@
+<div id="calendar_container" style="background-color: #efefef">
 <br />
 
 <div id="calendar">
@@ -6,7 +7,7 @@
 		<tr>
 			<td id='calendar_times'>
 				<% Day.quarter_hours.each do |q_hour| %>
-					<div class="qh_block interval_block" style="width:50px">
+					<div class="qh_block interval_block">
 						<%= q_hour %>
 					</div>
 				<% end %>
@@ -15,19 +16,18 @@
 				<div id="event_container">
 					<%= render partial: 'background' %>
 					<% @result.data.items.each do |item| %>
-						<% #if item['summary'] == 'test' %>
-							<%= render partial: 'event', 	locals: {event: item} %>
-						<% #end %>
+						<%= render partial: 'event', 	locals: {event: item} %>
 					<% end %>
 				</div>
 			</td>
 		</tr>
 	</table>
 </div>
-<div style="position: fixed; top: 100px; left: 500px; width:300px; border: 1px solid #000000;">
+<div style="position: absolute; top: 100px; left: 500px; width:300px; border: 1px solid #000000;">
 	wait. doing a test for posting an event using hard code.
 	<%= link_to 'Add Event', '/event', remote: true, method: :post %>
 </div>
 
 <br />
 <%= debug @result.data %>
+</div>

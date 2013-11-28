@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
 	#validates :email, uniqueness:true, presence:true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create }
 	validates :email, :email_format => {:message => 'ill-formed email'}
 
+	def full_name
+		"#{first_name} #{last_name}"
+	end
+
 	private
 
 	def self.authenticate(email,password)

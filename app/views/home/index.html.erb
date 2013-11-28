@@ -13,8 +13,6 @@
   <![endif]-->
 </head>
 <body>
-<%= render :partial => 'sessions/login_status' %>
-
   <!-- Modal -->  
   <div class="modal fade" id="sign_in_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-thin">
@@ -125,40 +123,9 @@
   <!-- /.modal -->
 
   <!-- Navbar -->
-  <div class="navbar-wrapper">
-    <div class="container">
-      <nav class="navbar navbar-default navbar-static-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <% if logged_in? %>
-            <%= link_to "GiveMeTime", user_path(current_user.id), class: "navbar-brand" %>
-          <% else %>
-            <%= link_to "GiveMeTime", root_url, class: "navbar-brand" %>
-          <% end %>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="">
-          <div class="navbar-form navbar-right">
-            <!-- Button trigger modal -->
-            <button class="btn btn-success" data-toggle="modal" data-target="#sign_in_modal">Sign In</button>
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary" data-toggle="modal" data-target="#sign_up_modal">Sign Up</button>
-          </div>
-        </div>
-        <!-- /.navbar-collapse --> </nav>
-    </div>
-  </div>
+  <%= render 'layouts/navigation' %>
 
   <!-- Carousel -->
-  <div class="container">
-
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -168,7 +135,7 @@
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="http://d8st7idcnjoas.cloudfront.net/galfull/DPF-117.jpg" alt="First slide">
+          <%= image_tag('carousel1.jpg') %>
           <div class="container">
             <div class="carousel-caption">
               <h1>Example headline.</h1>
@@ -184,7 +151,7 @@
           </div>
         </div>
         <div class="item">
-          <img src="http://fc06.deviantart.net/fs8/i/2005/276/a/a/CITY_SCAPE_by_Pierrick.jpg" alt="Second slide">
+          <%= image_tag('carousel2.jpg') %>
           <div class="container">
             <div class="carousel-caption">
               <h1>Another example headline.</h1>
@@ -198,7 +165,7 @@
           </div>
         </div>
         <div class="item">
-          <img src="http://fc04.deviantart.net/fs70/f/2010/361/1/c/the_pandulum_nebulae_by_philip25-d35skav.jpg" alt="Third slide">
+          <%= image_tag('carousel3.jpg') %>
           <div class="container">
             <div class="carousel-caption">
               <h1>One more for good measure.</h1>
@@ -219,7 +186,7 @@
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
     </div>
-    <!-- /.carousel --> </div>
+    <!-- /.carousel -->
 
   <!-- Marketing messaging and featurettes
     ================================================== -->
@@ -230,53 +197,23 @@
 
     <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">
-          Multiple Calendar Integration
-          <span class="text-muted">**Coming Soon**</span>
-        </h2>
-        <p class="lead">
-          Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
-        </p>
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Heading</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+        <p><a class="btn btn-default" href="#" role="button">View Details</a></p>
       </div>
-      <div class="col-md-5">
-        <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image"></div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-5">
-        <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image"></div>
-      <div class="col-md-7">
-        <h2 class="featurette-heading">
-          Oh yeah, it's that good.
-          <span class="text-muted">See for yourself.</span>
-        </h2>
-        <p class="lead">
-          Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
-        </p>
+      <div class="col-md-4">
+        <h2>Heading</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+        <p><a class="btn btn-default" href="#" role="button">View Details</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Heading</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+        <p><a class="btn btn-default" href="#" role="button">View Details</a></p>
       </div>
     </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">
-          And lastly, this one.
-          <span class="text-muted">Checkmate.</span>
-        </h2>
-        <p class="lead">
-          Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
-        </p>
-      </div>
-      <div class="col-md-5">
-        <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image"></div>
-    </div>
-
-    <hr class="featurette-divider">
 
     <!-- /END THE FEATURETTES -->
 

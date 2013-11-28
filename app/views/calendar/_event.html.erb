@@ -1,4 +1,5 @@
 <% if event['status'] == 'cancelled' %>
+<!-- TODO: Remove the existing event  -->
 <% else %>
 
 <%
@@ -15,7 +16,7 @@
 	<%= event['summary'] %>
 	<br />
 	<!-- Include Stuff Below if needed for debug -->
-	<%= event['end']['dateTime'] %>
+
 </div>
 
 <% end %>

@@ -1,10 +1,39 @@
 // Place all the styles related to the calendar controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	-o-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+	-webkit-box-shadow: $top $left $blur $color #{$inset};
+  	-moz-box-shadow: $top $left $blur $color #{$inset};
+  	box-shadow: $top $left $blur $color #{$inset};
+}
+
+$calendar_width: 200px;
+$time_index_width: 50px;
+$event_plane_width: $calendar_width - $time_index_width - 3px;
+
+$qh_block_height: 25px;
+
+
+#calendar_container {
+	a {
+		color: #0000FF;
+	}
+}
+
 #calendar {
-	min-width: 100px;
-	max-width: 200px;
-	border: 1px solid #000000;
+	width: $calendar_width;
+	@include box-shadow(0,2px,2px,-2px,#cccccc);
+  	border: 1px solid #cdcdcd;
+  	@include border-radius(5px);
 	margin-left: 30px;
 }
 
@@ -13,13 +42,23 @@
 	text-align: center;
 	padding:5px 0;
 	border-bottom: 1px solid #e1e1e1;
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fdfdfd), color-stop(100%, #eaeaea));
+    background-image: -webkit-linear-gradient(top, #fdfdfd, #eaeaea);
+    background-image: -moz-linear-gradient(top, #fdfdfd, #eaeaea);
+    background-image: -o-linear-gradient(top, #fdfdfd, #eaeaea);
+    background-image: linear-gradient(top, #fdfdfd, #eaeaea);
+}
+
+#calendar_table {
+	background-color: #FFFFFF;
 }
 
 .qh_block {
-	height: 25px;
+	height: $qh_block_height;
 }
 
 .interval_block {
+	width: $time_index_width;
 	border-right: 1px solid #e1e1e1;
 	border-bottom: 1px solid #e1e1e1;
 	border-left: 1px solid #e1e1e1;
@@ -29,8 +68,12 @@
 .calendar_event {
 	position:absolute;
 	width: 70px;
-	border:solid 1px #00A026;
-	background-color: #00F039;
+	background-color: #729BB9;
+	-webkit-border-radius: 4px;
+  	-moz-border-radius: 4px;
+  	-ms-border-radius: 4px;
+  	-o-border-radius: 4px;
+  	border-radius: 4px;
 }
 
 #event_container {

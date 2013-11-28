@@ -3,6 +3,9 @@ require 'json'
 
 class CalendarController < ApplicationController
   before_filter :require_login, :only => :index
+
+  layout 'private'
+
 	def index
     unless user_credentials.access_token || request.path_info =~ /\A\/oauth2/
       redirect_to('/oauth2authorize')
