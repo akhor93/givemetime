@@ -20,7 +20,7 @@ class CalendarController < ApplicationController
                               :headers => {'Content-Type' => 'application/json'},
                               :authorization => user_credentials)
     
-
+    puts (DateTime.now + 1.hour).rfc3339
     # puts @result.data.items[1]['status']
     # result_json = @result.data.to_json
     # result_hash = JSON.parse result_json

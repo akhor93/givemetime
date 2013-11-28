@@ -4,10 +4,13 @@ GiveMeTime::Application.routes.draw do
 
   resource :session, :only => [:new, :create, :destroy]
   resources :users, :only => [:new, :create, :show, :edit, :update]
-  resources :calendar, :only => [:index]
   resource :admin, :only => :show
   resource :home, :only => :index
 
+  resources :calendar, :only => [:index]
+  resources :event, :only => [:create]
+
+  #miscellaneous routes for prettier urls
   get '/logout' => 'sessions#destroy', as: :signout
 
   # The priority is based upon order of creation:

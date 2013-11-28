@@ -4,7 +4,8 @@
 #calendar {
 	min-width: 100px;
 	max-width: 200px;
-	border: 1px solid #e1e1e1;
+	border: 1px solid #000000;
+	margin-left: 30px;
 }
 
 #day_title_box {
@@ -39,18 +40,18 @@
 	height: 100%;
 }
 
-.bg_00 {
+.qh_00 {
 	border-bottom: 1px dotted #e1e1e1;
 }
 
-.bg_15 {
+.qh_15 {
 	border-bottom: 1px solid #c8c8c8;
 }
 
-.bg_30 {
+.qh_30 {
 	border-bottom: 1px dotted #e1e1e1;
 }
 
-.bg_45 {
+.qh_45 {
 	border-bottom: 1px solid #aeaeae;
 }
