@@ -1,10 +1,10 @@
 <%= render :partial => 'sessions/login_status' %>
 
 <div class="container">
-<p id="notice"><%= notice %></p>
 
 <h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
 
+<%= link_to 'Calendar', '/calendar' %>
 
 <div class="form-actions">
   <%= link_to 'Edit', edit_user_path(@user), :class => "btn btn-default" %> |

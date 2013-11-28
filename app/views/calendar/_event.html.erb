@@ -1,0 +1,20 @@
+<% if event['status'] == 'cancelled' %>
+<% else %>
+
+<%
+	start_time = event['start']['dateTime']
+	start_time_qh_chunks = start_time.hour * 4 + start_time.min / 15
+	end_time = event['end']['dateTime']
+	duration = end_time - start_time
+	duration_as_height = duration / 60 / 15 * 25
+	#duration as height is duration(seconds) divide by sec in min / mins in quarter hour * height of qhblock
+%>
+
+
+<div class="calendar_event qh_block" style="top: <%= start_time_qh_chunks * 25 %>px; height: <%= duration_as_height %>px;">
+	<%= event['summary'] %>
+	<br />
+	<!-- Include Stuff Below if needed for debug -->
+</div>
+
+<% end %>

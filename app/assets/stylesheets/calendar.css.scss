@@ -1,3 +1,56 @@
 // Place all the styles related to the calendar controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#calendar {
+	min-width: 100px;
+	max-width: 200px;
+	border: 1px solid #e1e1e1;
+}
+
+#day_title_box {
+	font-weight: bolder;
+	text-align: center;
+	padding:5px 0;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.qh_block {
+	height: 25px;
+}
+
+.interval_block {
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #e1e1e1;
+	padding: 5px 5px 5px 5px;
+}
+
+.calendar_event {
+	position:absolute;
+	width: 70px;
+	border:solid 1px #00A026;
+	background-color: #00F039;
+}
+
+#event_container {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+.bg_00 {
+	border-bottom: 1px dotted #e1e1e1;
+}
+
+.bg_15 {
+	border-bottom: 1px solid #c8c8c8;
+}
+
+.bg_30 {
+	border-bottom: 1px dotted #e1e1e1;
+}
+
+.bg_45 {
+	border-bottom: 1px solid #aeaeae;
+}

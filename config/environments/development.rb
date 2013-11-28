@@ -31,6 +31,8 @@ GiveMeTime::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  config.serve_static_assets = false
+
   ENV['OAUTH_CLIENT_ID'] = '142889764326-hvt1ba1us5fslo0dlpc19fa9vulrigmi.apps.googleusercontent.com'
   ENV['OAUTH_CLIENT_SECRET'] = 'JdUfe9hBg1OafxvPUu2mFliy'
 end

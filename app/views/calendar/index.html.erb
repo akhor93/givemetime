@@ -1,11 +1,30 @@
-<% if logged_in? %>
+<br />
 
-  <h1>Logged in</h1>
-  <%= debug @result.data %>
-  <!--<%= session.inspect %> -->
+<div id="calendar">
+	<div id="day_title_box"><%= @day.date.strftime('%A') %> (<%= @day.date.strftime('%m/%d') %>)</div>
+	<table id="calendar_table" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td id='calendar_times'>
+				<% Day.quarter_hours.each do |q_hour| %>
+					<div class="qh_block interval_block" style="width:50px">
+						<%= q_hour %>
+					</div>
+				<% end %>
+			</td>
+			<td id="calendar_events">
+				<div id="event_container">
+					<%= render partial: 'background' %>
+					<% @result.data.items.each do |item| %>
+						<% #if item['summary'] == 'test' %>
+							<%= render partial: 'event', 	locals: {event: item} %>
+						<% #end %>
+					<% end %>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
 
-<% else %>
 
-  <%= link_to 'Sign in', '/oath2authorize' %>
-
-<% end %>
+<br />
+<%= debug @result.data %>

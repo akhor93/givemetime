@@ -7,11 +7,30 @@ class CalendarController < ApplicationController
     unless user_credentials.access_token || request.path_info =~ /\A\/oauth2/
       redirect_to('/oauth2authorize')
     end
-    # calendar_api.calendar_list.list,
+    @day = Day.new(DateTime.now)
+    day_start = day_start(@day.datetime)
+    day_end = day_end(@day.datetime)
+
     @result = api_client.execute(:api_method => calendar_api.events.list,
-                              :parameters => {'calendarId' => 'primary'},
+                              :parameters => {
+                                'calendarId' => 'primary',
+                                'timeMin' => day_start,
+                                'timeMax' => day_end
+                                },
                               :headers => {'Content-Type' => 'application/json'},
                               :authorization => user_credentials)
+    
+
+    # puts @result.data.items[1]['status']
+    # result_json = @result.data.to_json
+    # result_hash = JSON.parse result_json
+    # puts result_hash
+    # puts result_hash.class
+    # @events = []
+    # @result.data.items.each do |item|
+    #   event = Event.new(item)
+    #   @events.push(event)
+    # end
   end
 
   def oauth2authorize
