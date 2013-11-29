@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
 
 	before_save :encrypt_password
 
-	validates_presence_of :first_name
-	validates_presence_of :last_name
-	validates_confirmation_of :password
+	validates :first_name, presence: true
+	validates :last_name, presence: true
+	validates :password, confirmation: true
+	validates :password, presence: true
 	#validates :email, uniqueness:true, presence:true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create }
 	validates :email, :email_format => {:message => 'ill-formed email'}
 

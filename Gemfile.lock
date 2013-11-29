@@ -34,13 +34,6 @@ GEM
       multi_json (>= 1.0.0)
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (3.1.4)
-    coffee-rails (4.0.1)
-      coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.0)
-    coffee-script (2.2.0)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.6.3)
     erubis (2.7.0)
     execjs (2.0.2)
     extlib (0.9.16)
@@ -137,7 +130,6 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
-  coffee-rails (~> 4.0.0)
   google-api-client
   jquery-rails
   pg

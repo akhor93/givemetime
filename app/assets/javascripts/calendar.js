@@ -1,14 +1,13 @@
-/*
-function calendar() {
-}
-
 $(document).ready(function() {
-	var test = new calendar();
-	console.log(test.email);
-	//var calendar = $('#calendar').initialize();
+	$('.duration_button').click(function() {
+		//Clear existing active
+		$('.duration_button').removeClass('active');
+		//Add 'Active' class to button 
+		var $this = $(this);
+		if (!$this.hasClass('active')) {
+			$this.addClass('active');
+		}
+		//Assign Value to hidden field elem
+		$('#event_duration').val($.trim($this.text()));
+	});
 });
-
-function initialize() {
-	alert('test');
-}
-*/
