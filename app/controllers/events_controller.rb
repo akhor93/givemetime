@@ -20,12 +20,10 @@ class EventsController < ApplicationController
 										:body => JSON.dump(google_event),
 										:headers => {'Content-Type' => 'application/json'},
 										:authorization => user_credentials)
-
-			@id = result.data.id
+			@event = result.data
 		else
 			puts event.errors.full_messages.first
 		end
-		
 	end
 
 	def destroy
