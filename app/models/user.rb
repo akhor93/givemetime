@@ -1,16 +1,17 @@
 class User < ActiveRecord::Base
 	attr_accessible :first_name, :last_name, :uid, :g_email, :access_token, :refresh_token, :expires_in, :issued_at
 	
-	before_validation :prep_email
-
 	attr_accessor :password
 
 	before_save :encrypt_password
 
+	before_validation :prep_email
+
+	has_many :todos, dependent: :destroy, :order => 'created_at DESC'
+
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :password, confirmation: true
-	validates :password, presence: true
 	#validates :email, uniqueness:true, presence:true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create }
 	validates :email, :email_format => {:message => 'ill-formed email'}
 

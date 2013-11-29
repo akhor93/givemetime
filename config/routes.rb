@@ -7,12 +7,21 @@ GiveMeTime::Application.routes.draw do
   resource :admin, :only => :show
   resource :home, :only => :index
 
-  #get '/calendar' => 'calendar#index'
   resources :calendar, :only => :index
   resources :events, :only => [:new, :create, :show, :edit, :update, :destroy]
-
+  resources :todos, :only => [:new, :create, :show, :edit, :update, :destroy]
+  
   #miscellaneous routes for prettier urls
   get '/logout' => 'sessions#destroy', as: :signout
+
+  #forwards logged in users to their show page when they try to access home page
+  constraints lambda { |req| !req.session[:user_id].blank? } do
+    root :to => "calendar#index", :as => "home_to_calendar_redirect"
+  end
+
+  root :to => 'home#index'
+
+  #*************************************************************
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -60,16 +69,6 @@ GiveMeTime::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-
-  #forwards logged in users to their show page when they try to access home page
-  constraints lambda { |req| !req.session[:user_id].blank? } do
-    root :to => "calendar#index", :as => "home_to_calendar_redirect"
-  end
-
-  root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

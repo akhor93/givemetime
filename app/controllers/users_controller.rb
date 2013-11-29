@@ -90,21 +90,4 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def calendar
-    #puts "OMNIAUTH: " + request.env['omniauth.auth']
-    puts request.env.inspect
-    @auth = request.env['omniauth.auth']
-    if @auth
-    @token = @auth['credentials']['token']
-    client = Google::APIClient.new
-    client.authorization.access_token = @token
-    service = client.discovered_api('calendar','v3')
-    @result = client.execute(
-      :api_method => service.calendar_list.list,
-      :parameters => {},
-      :headers => {'Content-Type' => 'application/json'})
-  else
-  end
-  end
 end

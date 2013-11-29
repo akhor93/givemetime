@@ -9,7 +9,9 @@ class CalendarController < ApplicationController
 	def index
     unless user_credentials.access_token || request.path_info =~ /\A\/oauth2/
       redirect_to('/oauth2authorize')
+      return
     end
+
     @day = Day.new(DateTime.now)
     day_start = day_start(@day.datetime)
     day_end = day_end(@day.datetime)
@@ -22,18 +24,6 @@ class CalendarController < ApplicationController
                                 },
                               :headers => {'Content-Type' => 'application/json'},
                               :authorization => user_credentials)
-    
-    puts (DateTime.now + 1.hour).rfc3339
-    # puts @result.data.items[1]['status']
-    # result_json = @result.data.to_json
-    # result_hash = JSON.parse result_json
-    # puts result_hash
-    # puts result_hash.class
-    # @events = []
-    # @result.data.items.each do |item|
-    #   event = Event.new(item)
-    #   @events.push(event)
-    # end
   end
 
   def oauth2authorize
@@ -56,7 +46,10 @@ class CalendarController < ApplicationController
     json_object = JSON.parse(json_results)
 
     current_user.g_email = json_object['data']['email']
-    current_user.save
+
+    unless current_user.save
+      puts current_user.errors.full_messages.first
+    end
 
     redirect_to('/calendar')
   end

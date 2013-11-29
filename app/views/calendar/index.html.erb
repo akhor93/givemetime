@@ -16,19 +16,30 @@
 				<div id="event_container">
 					<%= render partial: 'background' %>
 					<% @result.data.items.each do |item| %>
-						<%= render partial: 'event', locals: {event: item} %>
+						<%= render partial: 'events/event', locals: {event: item} %>
 					<% end %>
 				</div>
 			</td>
 		</tr>
 	</table>
 </div>
-<div style="position: absolute; top: 100px; left: 500px; width:300px; border: 1px solid #000000;">
-	<%= link_to 'Add Event', '/events', remote: true, method: :post %>
+<div style="position: absolute; top: 100px; left: 400px; width:300px; border: 1px solid #000000;">
+	<h2>Add TODO</h2>
+	<%= render 'todos/todo_form' %>
 	<br />
-	<%= render 'event_form' %>
+	<h2>Add Custom Event</h2>
+	<%= render 'events/event_form' %>
+</div>
+<div style="position: absolute; top: 100px; left: 750px; width:300px; border: 1px solid #000000;">
+	<h2>To-Do List</h2>
+	<br />
+	<div id="todo_container">
+		<% current_user.todos.each do |todo| %>
+			<%= render partial: 'todos/todo', locals: {todo: todo} %>
+		<% end %>
+	</div>
 </div>
 
 <br />
-<%= debug @result.data %>
+<!--<%= debug @result.data %>-->
 </div>

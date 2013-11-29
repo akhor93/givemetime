@@ -5,7 +5,7 @@ Rails.application.config.before_initialize do
       :application_name => 'GiveMeTime',
       :application_version => '0.0.1')
 
-	client_secrets = Google::APIClient::ClientSecrets.load(Rails.root.join('config', 'client_secrets.json'))
+	  client_secrets = Google::APIClient::ClientSecrets.load(Rails.root.join('config', 'client_secrets.json'))
     client.authorization = client_secrets.to_authorization
     client.authorization.scope = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar'
 
