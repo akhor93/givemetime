@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+	before_filter :require_login
+	
 	def create
 		event = Event.new(params[:event])
 		if event.valid?

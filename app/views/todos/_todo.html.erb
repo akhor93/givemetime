@@ -1,3 +1,9 @@
 <div id="todo_<%= todo.id %>">
 	<%= todo.title %>
+	<div style="display: inline-block;">
+	<%= form_for :todo, url: todo_path(todo.id), html: { :remote => true, :method => :delete } do |f| %>
+		<%= f.hidden_field :id, :value => todo.id %>
+		<%= f.submit "DELETE TODO: #{todo.title}" %>
+	<% end %>
+</div>
 </div>

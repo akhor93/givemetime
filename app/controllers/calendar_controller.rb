@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 
 class CalendarController < ApplicationController
-  before_filter :require_login, :only => :index
+  before_filter :require_login
 
   layout 'private'
 
