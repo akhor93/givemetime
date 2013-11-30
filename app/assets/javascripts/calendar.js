@@ -22,4 +22,6 @@ $(document).ready(function() {
 		//Assign Value to hidden field elem
 		$('#todo_duration').val($.trim($this.text()));
 	});
+
+	
 });

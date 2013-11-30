@@ -1,11 +1,14 @@
+<% puts "Creating Event: " + event['summary'] %>
 <% if event['status'] == 'cancelled' %>
 <!-- TODO: Remove the existing event  -->
 <% else %>
 
 <%
 	start_time = event['start']['dateTime']
-	start_time_qh_chunks = start_time.hour * 4 + start_time.min / 15
+	start_time = round_up_qh(start_time)
+	start_time_qh_chunks = start_time.hour * 4 + (start_time.min / 15).ceil
 	end_time = event['end']['dateTime']
+	end_time = round_up_qh(end_time)
 	duration = end_time - start_time
 	duration_as_height = duration / 60 / 15 * 25
 	#duration as height is duration(seconds) divide by sec in min / mins in quarter hour * height of qhblock

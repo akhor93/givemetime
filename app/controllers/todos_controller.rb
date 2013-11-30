@@ -10,4 +10,20 @@ class TodosController < ApplicationController
 		@todo_id = todo.id
 		todo.destroy
 	end
+
+	def to_event
+		todo = current_user.todos.find(params[:id])
+		unless todo.nil?
+			event = Event.new(todo.attributes)
+			if event.valid?
+				result = submit_event(event)
+				@event = result.data
+				respond_to do |format|
+  				format.js { render 'events/create' }
+				end
+			else
+				puts event.errors.full_messages.first
+			end
+		end
+	end
 end
