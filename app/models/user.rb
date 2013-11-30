@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_accessible :first_name, :last_name, :uid, :g_email, :access_token, :refresh_token, :expires_in, :issued_at
+	attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :uid, :g_email, :access_token, :refresh_token, :expires_in, :issued_at
 	
 	attr_accessor :password
 
@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :password, confirmation: true
-	#validates :email, uniqueness:true, presence:true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create }
 	validates :email, :email_format => {:message => 'ill-formed email'}
 
 	def full_name
