@@ -14,6 +14,7 @@
 					<% @result.data.items.each do |item| %>
 						<%= render partial: 'events/event', locals: {event: item} %>
 					<% end %>
+					<%= render partial: 'current_time_bar' %>
 				</div>
 			</td>
 		</tr>
