@@ -8,11 +8,12 @@ class User < ActiveRecord::Base
 	before_validation :prep_email
 
 	has_many :todos, dependent: :destroy, :order => 'created_at DESC'
+	has_many :events, dependent: :destroy, :order => 'created_at DESC'
 
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :password, confirmation: true
-	validates :email, :email_format => {:message => 'ill-formed email'}
+	validates :email, uniqueness: true, :email_format => {:message => 'ill-formed email'}
 
 	def full_name
 		"#{first_name} #{last_name}"

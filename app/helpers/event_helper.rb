@@ -4,10 +4,10 @@ module EventHelper
 			'summary' => event.title,
 			'location' => 'Some Location',
 			'start' => {
-				'dateTime' => DateTime.now.rfc3339
+				'dateTime' => event.start
 			},
 			'end' => {
-				'dateTime' => (DateTime.now + event.duration.to_i.minutes).rfc3339
+				'dateTime' => event.start + event.duration.to_i.minutes
 			}
 		}
 

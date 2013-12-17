@@ -24,6 +24,28 @@ class CalendarController < ApplicationController
                                 },
                               :headers => {'Content-Type' => 'application/json'},
                               :authorization => user_credentials)
+    current_time = Time.now
+    @result.data.items.each do |item|
+      event = Event.find_by google_etag: item['etag']
+      if event.nil?
+        event_params = Hash.new
+        event_params['title'] = item['summary']
+        event_params['duration'] = (item['end']['dateTime'] - item['start']['dateTime']).to_i / 60
+        event_params['google_etag'] = item['etag']
+        start = item['start']['dateTime']
+        start = start.change(:year => current_time.year, :month => current_time.month, :day => current_time.day)
+        event_params['start'] = start
+        event = Event.new(event_params)
+        event.user_id = current_user.id
+        event.allocated = true
+        if event.save
+          puts "event saved"
+        else
+          puts event.errors.full_messages.first
+        end
+      end
+    end
+    puts get_next_time_slot(31)
   end
 
   def oauth2authorize
