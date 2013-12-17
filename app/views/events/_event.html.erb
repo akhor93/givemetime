@@ -1,4 +1,7 @@
 <% puts "Rendering Event: " + event['summary'] %>
+<% block_height = 25 %>
+<% min_in_block = 5 %>
+
 <% if event['status'] == 'cancelled' %>
 <!-- TODO: Remove the existing event  -->
 <% else %>
@@ -6,17 +9,19 @@
 <%
 	start_time = event['start']['dateTime']
 	#start_time = round_up_qh(start_time)
-	start_time_blocks = start_time.hour * 12 + start_time.min / 5
-	#start_time_blocks is the hour times 12(blocks per hour) and then plus the number of blocks within the hour
+	start_time_blocks = (start_time.hour * 12) + (start_time.min / min_in_block)
+	#start_time_blocks is the hour times 12(blocks per hour), and plus the number of blocks within the hour
+	start_time_partial_block = start_time.min.to_f % min_in_block / min_in_block
+	start_time_blocks = start_time_blocks.to_f + start_time_partial_block
 	end_time = event['end']['dateTime']
 	#end_time = round_up_qh(end_time)
 	duration = end_time - start_time
-	duration_as_height = duration / 60 / 5 * 25
+	duration_as_height = duration / 60 / min_in_block * block_height
 	#duration as height is duration(seconds) divide by sec in min / mins in block * height of block
 %>
 
 
-<div class="calendar_event block" style="top: <%= start_time_blocks * 25 %>px; height: <%= duration_as_height %>px;">
+<div class="calendar_event block" style="top: <%= start_time_blocks * block_height %>px; height: <%= duration_as_height %>px;">
 	<%= event['summary'] %>
 	<br />
 	<!-- Include Stuff Below if needed for debug -->
