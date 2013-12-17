@@ -45,7 +45,7 @@ gem 'rails_12factor', group: :production
 
 #Custom Gems HERE 
 gem 'validates_email_format_of'
-
+gem 'bourbon' #SASS Mixin Library
 
 #Google Calendar and Authentication
 gem 'google-api-client', :require => 'google/api_client'

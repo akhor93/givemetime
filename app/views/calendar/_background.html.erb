@@ -1,19 +1,11 @@
 <% top_offset = 0 %>
 <% Day.hours.each do |hour| %>
-	<div class="qh_block qh_00" style="width:100%; top: <%= top_offset %>px;">
-		&nbsp;
-	</div>
-	<% top_offset = top_offset + 25 %>
-	<div class="qh_block qh_15" style="width:100%; top: <%= top_offset %>px;">
-		&nbsp;
-	</div>
-	<% top_offset = top_offset + 25 %>
-	<div class="qh_block qh_30" style="width:100%; top: <%= top_offset %>px;">
-		&nbsp;
-	</div>
-	<% top_offset = top_offset + 25 %>
-	<div class="qh_block qh_45" style="width:147px; top: <%= top_offset %>px;">
-		&nbsp;
-	</div>
-	<% top_offset = top_offset + 25 %>
+	<% minute = 0 %>
+	<% while minute < 60 %>
+		<div class="block bg_block bg_block_<%= sprintf('%02d',minute.to_s) %>" style="top: <%= top_offset %>px;">
+			&nbsp;
+		</div>
+		<% minute = minute + 5 %>
+		<% top_offset = top_offset + 25 %>
+	<% end %>
 <% end %>

@@ -45,7 +45,7 @@ class CalendarController < ApplicationController
         end
       end
     end
-    puts get_next_time_slot(31)
+    puts get_next_time_slot(31).to_s
   end
 
   def oauth2authorize

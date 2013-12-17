@@ -9,7 +9,6 @@ module CalendarHelper
 
 	def get_next_time_slot(event_duration = 5)
 		current_time = Time.now
-		puts "START TIME: " + current_time.to_s
 		puts current_user.events.size
     current_user.events.each do |event|
       puts event.inspect
@@ -29,8 +28,6 @@ module CalendarHelper
       	current_time = event.start + event.duration.minutes
       end
     end
-    puts "NEXT FIT: " + current_time.to_s
-
-    "N/A"
+		current_time
 	end
 end

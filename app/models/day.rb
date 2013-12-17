@@ -56,4 +56,18 @@ class Day
 		end
 		q_hours
 	end
+
+	#Five Minute Increments
+	def self.blocks
+		blocks = []
+		hours = Day.hours
+		hours.each do |hour|
+			minute = 0;
+			while minute < 60
+				blocks.push(hour + ":" + sprintf('%02d',minute.to_s))
+				minute = minute + 5
+			end
+		end
+		blocks
+	end
 end
