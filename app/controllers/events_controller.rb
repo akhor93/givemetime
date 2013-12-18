@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 	def create
 		event = Event.new(params[:event])
 		#Update the following line later
-		event.start = Time.now
+		event.start = get_next_time_slot(event.duration)
 		if event.valid?
 			result = submit_event(event)
 			event.google_etag = result.data['etag']

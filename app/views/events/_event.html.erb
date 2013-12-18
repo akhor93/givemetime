@@ -1,3 +1,6 @@
+<% if event['summary'].nil? %>
+	<% event['summary'] = 'No Title' %>
+<% end %>
 <% puts "Rendering Event: " + event['summary'] %>
 <% block_height = 25 %>
 <% min_in_block = 5 %>

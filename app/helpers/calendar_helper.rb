@@ -1,14 +1,16 @@
 module CalendarHelper
-	def day_start(day)
-		day.beginning_of_day.rfc3339
+	def day_start(time)
+		#.rfc3339 for DateTime is equivalent to strftime('%FT%T%:z')
+		time.beginning_of_day.strftime('%FT%T%:z')
 	end
 
-	def day_end(day)
-		day.end_of_day.rfc3339
+	def day_end(time)
+		#.rfc3339 for DateTime is equivalent to strftime('%FT%T%:z')
+		time.end_of_day.strftime('%FT%T%:z')
 	end
 
 	def get_next_time_slot(event_duration = 5)
-		current_time = Time.now
+		current_time = Time.zone.now
 		puts current_user.events.size
     current_user.events.each do |event|
       puts event.inspect

@@ -12,9 +12,9 @@ class CalendarController < ApplicationController
       return
     end
 
-    @day = Day.new(DateTime.now)
-    day_start = day_start(@day.datetime)
-    day_end = day_end(@day.datetime)
+    @day = Day.new(Time.zone.now)
+    day_start = day_start(@day.time)
+    day_end = day_end(@day.time)
 
     @result = api_client.execute(:api_method => calendar_api.events.list,
                               :parameters => {
@@ -24,8 +24,11 @@ class CalendarController < ApplicationController
                                 },
                               :headers => {'Content-Type' => 'application/json'},
                               :authorization => user_credentials)
-    current_time = Time.now
+    
+    current_time = Time.zone.now
+    google_ids = Set.new
     @result.data.items.each do |item|
+      google_ids.add(item['etag'])
       event = Event.find_by google_etag: item['etag']
       if event.nil?
         event_params = Hash.new
@@ -45,7 +48,9 @@ class CalendarController < ApplicationController
         end
       end
     end
-    puts get_next_time_slot(31).to_s
+    # puts "Google ID Set:"
+    # puts google_ids.inspect
+    clean_events(google_ids)
   end
 
   def oauth2authorize

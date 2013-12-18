@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20131206044332) do
     t.integer  "expires_in"
     t.datetime "issued_at"
     t.boolean  "confirmed"
+    t.string   "time_zone",       default: "Central Time (US & Canada)"
     t.datetime "time_created"
     t.datetime "created_at"
     t.datetime "updated_at"

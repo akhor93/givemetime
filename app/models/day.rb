@@ -1,19 +1,19 @@
 class Day
 	include ActiveModel::Validations
 
-	attr_accessor :datetime
+	attr_accessor :time
 
 	
 
-	def initialize(datetime, attributes = {})
+	def initialize(time, attributes = {})
 		attributes.each do |name, value|
 			send("#{name}=", value)
 		end
-		self.datetime = datetime
+		self.time = time
 	end
 
 	def date
-		self.datetime.to_date
+		self.time
 	end
 
 	def self.hours(add_meridium = false)

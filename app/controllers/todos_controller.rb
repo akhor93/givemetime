@@ -18,7 +18,7 @@ class TodosController < ApplicationController
 			event.title = todo.title
 			event.duration = todo.duration
 			#Update following line
-			event.start = Time.now
+			event.start = Time.zone.now
 			if event.valid?
 				result = submit_event(event)
 				event.google_etag = result.data['etag']
