@@ -7,8 +7,11 @@ class User < ActiveRecord::Base
 
 	before_validation :prep_email
 
-	has_many :todos, dependent: :destroy, :order => 'created_at DESC'
-	has_many :events, dependent: :destroy, :order => 'created_at DESC'
+	has_many :todos, dependent: :destroy
+	# has_many :todos, -> { dependent: :destroy}
+
+	has_many :events, dependent: :destroy
+	# has_many :events, -> { dependent: :destroy}
 
 	validates :first_name, presence: true
 	validates :last_name, presence: true

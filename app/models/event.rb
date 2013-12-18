@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-	default_scope order: 'start DESC'
+	default_scope { order('start ASC') }
 
 	attr_accessible :title, :start, :duration, :google_etag, :user_id, :allocated
 

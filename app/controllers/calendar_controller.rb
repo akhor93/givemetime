@@ -20,7 +20,8 @@ class CalendarController < ApplicationController
                               :parameters => {
                                 'calendarId' => 'primary',
                                 'timeMin' => day_start,
-                                'timeMax' => day_end
+                                'timeMax' => day_end,
+                                'singleEvents' => true
                                 },
                               :headers => {'Content-Type' => 'application/json'},
                               :authorization => user_credentials)
@@ -50,6 +51,7 @@ class CalendarController < ApplicationController
     end
     # puts "Google ID Set:"
     # puts google_ids.inspect
+    get_next_time_slot(15)
     clean_events(google_ids)
   end
 
