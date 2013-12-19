@@ -1,6 +1,7 @@
 GiveMeTime::Application.routes.draw do
   get '/oauth2authorize' => 'calendar#oauth2authorize', as: :oauth2authorize
   get '/oauth2callback' => 'calendar#oauth2callback', as: :oauth2callback
+  get '/load_google_events' => 'calendar#load_google_events', as: :load_google_events
 
   resource :session, :only => [:new, :create, :destroy]
   resources :users, :only => [:new, :create, :show, :edit, :update]

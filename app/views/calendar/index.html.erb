@@ -11,9 +11,7 @@
 			<td id="calendar_events">
 				<div id="event_container">
 					<%= render partial: 'background' %>
-					<% @result.data.items.each do |item| %>
-						<%= render partial: 'events/event', locals: {event: item} %>
-					<% end %>
+					
 					<%= render partial: 'current_time_bar' %>
 				</div>
 			</td>
@@ -38,5 +36,7 @@
 </div>
 
 <br />
+
+<%= link_to "Load Google Events", '/load_google_events', {:id => 'load_google_events', remote: true} %> 
 <%= debug @result.data %>
 </div>

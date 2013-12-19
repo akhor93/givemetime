@@ -1,0 +1,3 @@
+<% @result.data.items.each do |item| %>
+	$('#event_container').append("<%= j render(:partial => 'events/event', :locals => {event: item}) %>");
+<% end %>

@@ -13,6 +13,23 @@ class CalendarController < ApplicationController
     end
 
     @day = Day.new(Time.zone.now)
+    #Below is for debugging. Need to insert @result for use in debugging
+    day_start = day_start(@day.time)
+    day_end = day_end(@day.time)
+
+    @result = api_client.execute(:api_method => calendar_api.events.list,
+                              :parameters => {
+                                'calendarId' => 'primary',
+                                'timeMin' => day_start,
+                                'timeMax' => day_end,
+                                'singleEvents' => true
+                                },
+                              :headers => {'Content-Type' => 'application/json'},
+                              :authorization => user_credentials)
+  end
+
+  def load_google_events
+    @day = Day.new(Time.zone.now)
     day_start = day_start(@day.time)
     day_end = day_end(@day.time)
 
@@ -53,6 +70,15 @@ class CalendarController < ApplicationController
     # puts google_ids.inspect
     # get_next_time_slot(15)
     clean_events(google_ids)
+
+    puts "STARTING NEW MATERIAL!!!!!!!!!!!!!!"
+    respond_to do |format|
+      if @result
+        format.js {}
+      else
+        puts "problem getting google events. Change to alert message"
+      end
+    end
   end
 
   def oauth2authorize

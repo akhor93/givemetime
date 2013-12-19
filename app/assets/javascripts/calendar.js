@@ -60,4 +60,8 @@ $(document).ready(function() {
 		wheelSpeed: 100,
 		minScrollbarLength: 200
 	});
+
+
+	$('#load_google_events').click();
+
 });
