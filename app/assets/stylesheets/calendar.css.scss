@@ -13,27 +13,29 @@
 }
 
 $calendar_width: 200px;
-$time_index_width: 50px;
-$event_plane_width: $calendar_width - $time_index_width - 3px;
+$interval_width: 65px;
+$event_plane_width: $calendar_width - $interval_width - 3px;
 
-$qh_block_height: 25px;
 $block_height: 25px;
 
 #calendar_container {
 	a {
 		color: #0000FF;
 	}
+	overflow: hidden;
 }
 
 #calendar {
 	width: $calendar_width;
+	min-width: $calendar_width;
 	@include box-shadow(0,2px,2px,-2px,#cccccc);
   border: 1px solid #cdcdcd;
   @include border-radius(5px);
 	margin-left: 30px;
-	overflow-y: scroll;
-	overflow-x: hidden;
+	overflow: hidden;
 	height: 850px;
+	/* needed for perfect scrollbar */
+	position: relative;
 }
 
 #day_title_box {
@@ -55,7 +57,7 @@ $block_height: 25px;
 }
 
 .interval_block {
-	width: $time_index_width;
+	width: $interval_width;
 	border-right: 1px solid #e1e1e1;
 	border-bottom: 1px solid #e1e1e1;
 	border-left: 1px solid #e1e1e1;
@@ -95,7 +97,7 @@ $block_height: 25px;
 }
 
 .bg_block {
-	width: 147px;
+	width: $event_plane_width;
 }
 
 .bg_block_00 {

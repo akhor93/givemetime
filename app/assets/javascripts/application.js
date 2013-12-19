@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require underscore
+//= require jquery.mousewheel
+//= require perfect-scrollbar
 //= require_tree .
 

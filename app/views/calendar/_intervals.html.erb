@@ -1,9 +1,13 @@
+<% meridium = 'am' %>
 <% Day.hours.each do |hour| %>
 	<% minute = 0 %>
 	<% while minute < 60 %>
 		<div class="block interval_block bg_block_<%= sprintf('%02d',minute.to_s) %>">
-			<%= hour + ":" + sprintf('%02d',minute.to_s) %>
+			<%= hour + ":" + sprintf('%02d',minute.to_s) + meridium %>
 		</div>
 		<% minute = minute + 5 %>
+	<% end %>
+	<% if hour == '11' %>
+		<% meridium = 'pm' %>
 	<% end %>
 <% end %>
