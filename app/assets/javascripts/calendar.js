@@ -1,8 +1,4 @@
 $(document).ready(function() {
-	$('#logout_button').click(function() {
-		$('#logout_link').click();
-	});
-
 	$('.event_duration_button').click(update_duration);
 	$('.todo_duration_button').click(update_duration);
 
@@ -94,6 +90,8 @@ $(document).ready(function() {
 		i.toggleClass('glyphicon-chevron-down glyphicon-chevron-right');
 	});
 
+	$('#todo_container').on('prepend_todo',function() {$('#todo_count_badge').html(parseInt($('#todo_count_badge').html(), 10) +1);});
+
 });
 
 //Objects
@@ -113,10 +111,6 @@ function Cal_Event(title, duration, start) {
 	}
 
 //Functions
-function logout() {
-	$('#logout_link').click();
-}
-
 function update_duration() {
 	var $this = $(this);
 	//Clear existing active

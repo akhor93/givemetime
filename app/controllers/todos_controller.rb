@@ -17,9 +17,9 @@ class TodosController < ApplicationController
 			event = Event.new
 			event.title = todo.title
 			event.duration = todo.duration
-			#Update following line
-			event.start = Time.zone.now
+			event.start = get_next_time_slot(event.duration)
 			if event.valid?
+				#Need to destroy todo
 				result = submit_event(event)
 				event.google_etag = result.data['etag']
 				event.user_id = current_user.id

@@ -1,5 +1,5 @@
 <% if @todo.valid? %>
-	$('#todo_container').prepend("<%= j render(:partial => 'todos/todo', :locals => {todo: @todo}) %>");
+	$('#todo_container').prepend("<%= j render(:partial => 'todos/todo', :locals => {todo: @todo}) %>").trigger('prepend_todo');
 <% else %>
 	alert('Enter all fields');
 <% end %>

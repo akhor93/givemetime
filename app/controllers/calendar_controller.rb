@@ -66,12 +66,8 @@ class CalendarController < ApplicationController
         end
       end
     end
-    # puts "Google ID Set:"
-    # puts google_ids.inspect
-    # get_next_time_slot(15)
     clean_events(google_ids)
 
-    puts "STARTING NEW MATERIAL!!!!!!!!!!!!!!"
     respond_to do |format|
       if @result
         format.js {}

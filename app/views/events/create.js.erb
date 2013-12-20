@@ -1,3 +1,1 @@
-$('#event_container').append("<%= j render(:partial => 'events/event', :locals => {event: @event}) %>").trigger('append_event', [ '<%= @event.title %>', '<%= @event.duration %>', '<%= @event.start %>'] );
-
-// $('#event_container').append("<%= j render(:partial => 'events/event', :locals => {event: @event}) %>");
+$('#event_container').append("<%= j render(:partial => 'events/event', :locals => {event: @event}) %>").trigger('append_event', [ '<%= @event["summary"] %>', '<%= @event["end"]["dateTime"] - @event["start"]["dateTime"] %>', '<%= @event["start"]["dateTime"] %>'] );
