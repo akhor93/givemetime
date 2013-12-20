@@ -1,0 +1,5 @@
+<% if @activity.valid? %>
+	$('#activity_container').prepend("<%= j render(:partial => 'activities/activity', :locals => {activity: @activity}) %>").trigger('prepend_activity');
+<% else %>
+	alert('Enter all fields');
+<% end %>

@@ -15,6 +15,11 @@ GiveMeTime::Application.routes.draw do
       post 'to_event'
     end
   end
+  resources :activities, :only => [:new, :create, :show, :edit, :update, :destroy] do
+    member do
+      post 'to_event'
+    end
+  end
   
   #miscellaneous routes for prettier urls
   get '/logout' => 'sessions#destroy', as: :signout

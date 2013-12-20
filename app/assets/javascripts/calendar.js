@@ -1,22 +1,13 @@
 $(document).ready(function() {
-	$('.event_duration_button').click(update_duration);
 	$('.todo_duration_button').click(update_duration);
+	$('.activity_duration_button').click(update_duration);
+	$('.event_duration_button').click(update_duration);
+
 	update_current_time_bar_position();
 
-	var events_list = new Array();
-	var future_events = new Array(); //Includes currently happening events
+	event_tracking();
 
-	$('#event_container').on('append_event', function( event, title, duration, start) {
-		var event = new Cal_Event(title, duration, start);
-		events_list.push(event);
-		if(!event.inPast) future_events.push(event);
-		//earliest events are at end of array. This is to use pop over shift
-		future_events.sort(sort_events_reverse_chrono_end);
-	});	
 	
-	var first = true;
-	var millisTillNextMin = moment().endOf('minute'); - moment();;
-	setTimeout(move_current_time_bar,millisTillNextMin);
 
 	var current_time_bar_scroll_top = parseInt($('#current_time_bar').css('top'), 10);
 	$('#calendar').scrollTop(current_time_bar_scroll_top - 100);
@@ -34,6 +25,9 @@ $(document).ready(function() {
 	//Set increment and decrement for todo badge
 	$('#todo_container').on('prepend_todo',function() {$('#todo_count_badge').html(parseInt($('#todo_count_badge').html(), 10) +1);});
 	$('.add_todo_form').bind('ajax:complete', function() {$('#todo_count_badge').html(parseInt($('#todo_count_badge').html(), 10) -1);});
+
+	//Set increment for activity badge
+	$('#activity_container').on('prepend_activity',function() {$('#activity_count_badge').html(parseInt($('#activity_count_badge').html(), 10) +1);});
 
 	load_google_events();
 	
@@ -78,48 +72,59 @@ function update_duration() {
 	$('#' + $this.data('category') + '_duration').val($.trim($this.text()));
 }
 
-function move_current_time_bar() {
+function event_tracking() {
+	this.events_list = new Array();
+	this.future_events = new Array(); //Includes currently happening events
+
+	$('#event_container').on('append_event', function( event, title, duration, start) {
+		var event = new Cal_Event(title, duration, start);
+		events_list.push(event);
+		if(!event.inPast) future_events.push(event);
+		//earliest events are at end of array. This is to use pop over shift
+		future_events.sort(sort_events_reverse_chrono_end);
+	});	
+	
+	var millisTillNextMin = moment().endOf('minute'); - moment();;
+	setTimeout(move_current_time_bar(true),millisTillNextMin);
+}
+
+function move_current_time_bar(first) {
+	first = typeof first !== 'undefined' ? first : false;
 	if(first) {
 		$('#current_time_bar').css('top',"-=5");
-		first = false;
 	}
-	if(future_events.length > 0) {
+	if(self.future_events.length > 0) {
 		//need to guarantee the end of the first event is before the start of the second
-		if(moment() > future_events[future_events.length-1].end) {
-			// console.log('2');
-			if(future_events.length > 1) {
-				// console.log('4*');
+		if(moment() > self.future_events[self.future_events.length-1].end) {
+			if(self.future_events.length > 1) {
 				//Check if space between next event is more than 5 minutes. Need to account for time
 				//user takes to respond and add an event. A strict 5 minutes wont work.
-				if(future_events[future_events.length-2].start > future_events[future_events.length-1].end.add('minutes',5)) {
-					// console.log('5');
+				if(self.future_events[self.future_events.length-2].start > self.future_events[self.future_events.length-1].end.add('minutes',5)) {
 					//Enough space, show alert
 					alert("You have some free time. Why don't you complete some activities or to-dos");
 					update_current_time_bar_position();
 				}
 				else {
-					// console.log('6');
 					//Not Enough space between events. Keep for readability
 				}
 			}
 			else {
-				// console.log('3');
 				//Only event, so send alert
 				alert("You have some free time. Why don't you complete some activities or to-dos");
 				update_current_time_bar_position();
 			}
-			future_events[future_events.length-1].isPast = true;
-			future_events[future_events.length-1].isFuture = false;
-			future_events[future_events.length-1].isHappening = false;
-			future_events.pop();
+			self.future_events[self.future_events.length-1].isPast = true;
+			self.future_events[self.future_events.length-1].isFuture = false;
+			self.future_events[self.future_events.length-1].isHappening = false;
+			self.future_events.pop();
 		}
 		else {
-			//console.log('not finished');
+			//Closest event to completion has not finished
 		}
 	}
 
 	$('#current_time_bar').css('top',"+=5");
-	setTimeout(moveCurrentTimeBar, 60000);
+	setTimeout(move_current_time_bar, 60000);
 }
 
 //Ajax Functions

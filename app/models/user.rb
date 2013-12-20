@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
 	before_validation :prep_email
 
+	has_many :activities, dependent: :destroy
+
 	has_many :todos, dependent: :destroy
 	# has_many :todos, -> { dependent: :destroy}
 

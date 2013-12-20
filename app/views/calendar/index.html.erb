@@ -20,6 +20,24 @@
 						</div>
 					</div>
 				</div>
+				<div class="panel panel-default">
+					<a data-toggle="collapse" data-parent="#list_accordion" href="#collapseActivities">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<span class='glyphicon glyphicon-chevron-down'></span> Activity List<span id="activity_count_badge" class="badge pull-right"><%= current_user.activities.size %></span>
+							</h4>
+						</div>
+					</a>
+					<div id="collapseActivities" class="panel-collapse collapse in">
+						<div class="panel-body">
+							<div id="activity_container">
+								<% current_user.activities.each do |activity| %>
+								<%= render partial: 'activities/activity', locals: {activity: activity} %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			
 		</div>
@@ -50,6 +68,9 @@
 		<div id="quick-form_pane" class="col-lg-4">
 			<h2>Add TODO</h2>
 			<%= render 'todos/todo_form' %>
+			<br />
+			<h2>Add Activity</h2>
+			<%= render 'activities/activity_form' %>
 			<br />
 			<h2>Add Custom Event</h2>
 			<%= render 'events/event_form' %>
