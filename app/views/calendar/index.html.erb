@@ -24,7 +24,6 @@
 			
 		</div>
 		<div id="calendar_pane" class="col-lg-6">
-			<br />
 			<div id="day_title_box">
 				<h2>
 					<%= @day.date.strftime('%A') %>
@@ -60,7 +59,7 @@
 		<%= link_to "Load Google Events", '/load_google_events', {:id =>
 		'load_google_events', remote: true, :style => "display:none;" } %>
 	</div>
-	<div class="row">
+	<div>
 		<%= debug @result.data %>
 	</div>
 </div>

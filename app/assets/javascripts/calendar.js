@@ -79,7 +79,7 @@ $(document).ready(function() {
 	},millisTillNextMin);
 
 	var current_time_bar_scroll_top = parseInt($('#current_time_bar').css('top'), 10);
-	$('#calendar').scrollTop(current_time_bar_scroll_top);
+	$('#calendar').scrollTop(current_time_bar_scroll_top - 100);
 
 	$('#calendar').perfectScrollbar({
 		wheelSpeed: 150,
