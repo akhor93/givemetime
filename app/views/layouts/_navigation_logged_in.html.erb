@@ -24,10 +24,10 @@
               </ul>
             </div>
             <!-- Log Out -->
-            <button class="btn btn-default">
-              <span class="glyphicon glyphicon-share-alt"></span> <%= link_to "Log Out", session_path, :method => :delete %>
-            </button>
-            
+            <a class="btn btn-default" data-method="delete" href="/session">
+              <span class='glyphicon glyphicon-share-alt'></span> Log Out
+            </a>
+          
           </div>
         </div>
         <!-- /.navbar-collapse --> </nav>

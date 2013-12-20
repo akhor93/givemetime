@@ -1,149 +1,118 @@
-@mixin border-radius($radius) {
-	-webkit-border-radius: $radius;
-	-moz-border-radius: $radius;
-	-ms-border-radius: $radius;
-	-o-border-radius: $radius;
-	border-radius: $radius;
-}
+@import 'calendar/mixins';
+@import 'calendar/variables';
 
-@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
-	-webkit-box-shadow: $top $left $blur $color #{$inset};
-  	-moz-box-shadow: $top $left $blur $color #{$inset};
-  	box-shadow: $top $left $blur $color #{$inset};
-}
 
-$calendar_width: 200px;
-$interval_width: 65px;
-$event_plane_width: $calendar_width - $interval_width - 3px;
-
-$block_height: 25px;
-
-#calendar_container {
-	a {
-		color: #0000FF;
-	}
-	overflow: hidden;
-}
-
-#calendar {
-	width: $calendar_width;
-	min-width: $calendar_width;
-	@include box-shadow(0,2px,2px,-2px,#cccccc);
-  border: 1px solid #cdcdcd;
-  @include border-radius(5px);
-	margin-left: 30px;
-	overflow: hidden;
-	height: 850px;
-	/* needed for perfect scrollbar */
-	position: relative;
-}
-
-#day_title_box {
-	font-weight: bolder;
-	text-align: center;
-	padding:5px 0;
-	border-bottom: 1px solid #e1e1e1;
-	@include background(linear-gradient(#fdfdfd, #eaeaea)top left repeat);
-
-}
-
-#calendar_table {
-	background-color: #FFFFFF;
-}
-
-.block {
-	height: $block_height;
-	z-index: 100;
-}
-
-.interval_block {
-	width: $interval_width;
-	border-right: 1px solid #e1e1e1;
-	border-bottom: 1px solid #e1e1e1;
-	border-left: 1px solid #e1e1e1;
-	padding: 5px 2px 5px 5px;
-	text-align: right;
-	/* line height is acting like the top margin. Used to place text at top of div */
-	line-height: 2px;
-}
-
-.calendar_event {
-	position:absolute;
-	width: 100px;
-	background-color: #729BB9;
-	-webkit-border-radius: 4px;
-  	-moz-border-radius: 4px;
-  	-ms-border-radius: 4px;
-  	-o-border-radius: 4px;
-  	border-radius: 4px;
-}
-
-#event_container {
-	position: relative;
-	display: inline-block;
-	width: 100%;
+#content {
+	width:100%;
 	height: 100%;
+	background-color: #efefef;
+	#calendar_container {
+		width: 100%;
+		height: 100%;
+		margin-bottom: 20px;
+		border-bottom: 2px solid #CCCCCC;
+		h2 {
+			text-align:center;
+		}
+		#quick-form_pane {
+
+		}
+		#calendar_pane {
+			width: $calendar_width;
+			min-width: $calendar_width;
+			height: 100%;
+			margin-left: 30px;
+			border-left: 2px solid #CCCCCC;
+			border-right: 2px solid #CCCCCC;
+			overflow: hidden;
+			a {
+				color: #0000FF;
+			}
+			#calendar {
+				width: 100%;
+				height: 950px;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				@include box-shadow(0,2px,2px,-2px,#cccccc);
+			  border: 1px solid #cdcdcd;
+			  @include border-radius(5px);
+				overflow: hidden;
+				/* needed for perfect scrollbar */
+				position: relative;
+
+				#calendar_table {
+					background-color: #FFFFFF;
+					.calendar_event {
+						position:absolute;
+						width: 100px;
+						background-color: #729BB9;
+						@include border-radius(4px);
+
+						#event_container {
+							position: relative;
+							display: inline-block;
+							width: 100%;
+							height: 100%;
+							#current_time_bar {
+								position: absolute;
+								top: 0;
+								left: 0;
+								width: 100%;
+								height: 0;
+								border-top: 2px solid #ff7f6e;
+								overflow: hidden;
+								z-index: 200;
+							}
+						}
+					}
+					.block {
+						height: $block_height;
+						z-index: 100;
+					}
+					.interval_block {
+						width: $interval_width;
+						border-right: 1px solid #e1e1e1;
+						border-bottom: 1px solid #e1e1e1;
+						border-left: 1px solid #e1e1e1;
+						padding: 5px 2px 5px 5px;
+						text-align: right;
+						/* line height is acting like the top margin. Used to place text at top of div */
+						line-height: 2px;
+					}
+				}
+			}
+			#day_title_box {
+				font-weight: bolder;
+				text-align: center;
+				@include box-shadow(0,2px,2px,-2px,#cccccc);
+			  border: 1px solid #cdcdcd;
+			  @include border-radius(5px);
+				@include background(linear-gradient(#fdfdfd, #eaeaea)top left repeat);
+				position: relative;
+				top: 0;
+				h2 {
+					margin-top: 10px;
+					margin-bottom: 10px;
+				}
+			}
+		}
+		#list_pane {
+			.panel-heading {
+				@include box-shadow(0,2px,2px,-2px,#cccccc);
+				@include background(linear-gradient(#fdfdfd, #eaeaea)top left repeat);
+			}
+			#todo_container {
+				.todo {
+					height: 50px;
+					margin-bottom: 10px;
+					border-bottom: 2px dotted #CCCCCC;
+					.todo_title {
+						font-size: 16px;
+					}
+				}
+			}
+		}
+	}
 }
 
-#current_time_bar {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 0;
-	border-top: 2px solid #ff7f6e;
-	overflow: hidden;
-	z-index: 200;
-}
-
-.bg_block {
-	width: $event_plane_width;
-}
-
-.bg_block_00 {
-	border-bottom: 1px dotted #e1e1e1;
-}
-
-.bg_block_05 {
-	border-bottom: 1px dotted #e1e1e1;
-}
-
-.bg_block_10 {
-	border-bottom: 1px solid #c8c8c8;
-}
-
-.bg_block_15 {
-	border-bottom: 1px dotted #e1e1e1;
-}
-
-.bg_block_20 {
-	border-bottom: 1px dotted #e1e1e1;
-}
-
-.bg_block_25 {
-	border-bottom: 1px solid #a7a7a7;
-}
-
-.bg_block_30 {
-	border-bottom: 1px dotted #e1e1e1;
-}
-
-.bg_block_35 {
-	border-bottom: 1px dotted #e1e1e1;
-}
-
-.bg_block_40 {
-	border-bottom: 1px solid #c8c8c8;
-}
-
-.bg_block_45 {
-	border-bottom: 1px dotted #e1e1e1;
-}
-
-.bg_block_50 {
-	border-bottom: 1px dotted #e1e1e1;
-}
-
-.bg_block_55 {
-	border-bottom: 2px solid #9b9b9b;
-}
+@import 'calendar/background-blocks';
