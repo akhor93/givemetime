@@ -55,10 +55,6 @@
 			<%= render 'events/event_form' %>
 		</div>
 	</div>
-	<div class="row">
-		<%= link_to "Load Google Events", '/load_google_events', {:id =>
-		'load_google_events', remote: true, :style => "display:none;" } %>
-	</div>
 	<div>
 		<%= debug @result.data %>
 	</div>

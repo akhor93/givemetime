@@ -5,14 +5,11 @@
 		<%= todo.duration %> min
 	</div>
 	<div style="float:left; width:25%;">
-		<%= form_for :todo, url: to_event_todo_path(todo.id), html: { :remote => true, :method => :post } do |f| %>
+		<%= form_for :todo, url: to_event_todo_path(todo.id), html: { :remote => true, :method => :post, :class => "add_todo_form" } do |f| %>
 			<%= f.submit "Add", { :class => "btn btn-primary" } %>
 		<% end %>
 	</div>
 
-	
-	
-	 
 	<!--
 	<div style="display: inline-block;">
 		<%= form_for :todo, url: todo_path(todo.id), html: { :remote => true, :method => :delete } do |f| %>
