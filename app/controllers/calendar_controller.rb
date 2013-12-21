@@ -13,6 +13,8 @@ class CalendarController < ApplicationController
     end
 
     @day = Day.new(Time.zone.now)
+    @base_time = day_start(@day.time)
+    puts @base_time.inspect
     #Below is for debugging. Need to insert @result for use in debugging
     day_start = day_start(@day.time)
     day_end = day_end(@day.time)
@@ -55,7 +57,7 @@ class CalendarController < ApplicationController
         event_params['google_etag'] = item['etag']
         start = item['start']['dateTime']
         start = start.change(:year => current_time.year, :month => current_time.month, :day => current_time.day)
-        event_params['start'] = start
+        event_params['start'] = start.utc
         event = Event.new(event_params)
         event.user_id = current_user.id
         event.allocated = true

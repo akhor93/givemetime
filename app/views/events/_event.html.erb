@@ -10,13 +10,13 @@
 <% else %>
 
 <%
-	start_time = event['start']['dateTime']
+	start_time = event['start']['dateTime'].in_time_zone(current_user.time_zone)
 	#start_time = round_up_qh(start_time)
 	start_time_blocks = (start_time.hour * 12) + (start_time.min / min_in_block)
 	#start_time_blocks is the hour times 12(blocks per hour), and plus the number of blocks within the hour
 	start_time_partial_block = start_time.min.to_f % min_in_block / min_in_block
 	start_time_blocks = start_time_blocks.to_f + start_time_partial_block
-	end_time = event['end']['dateTime']
+	end_time = event['end']['dateTime'].in_time_zone(current_user.time_zone)
 	#end_time = round_up_qh(end_time)
 	duration = end_time - start_time
 	duration_as_height = duration / 60 / min_in_block * block_height
@@ -29,11 +29,5 @@
 	<br />
 	<!-- Include Stuff Below if needed for debug -->
 </div>
-<!-- 
-<%= javascript_tag do %>
-	console.log('test');
-	var lol = new Cal_Event("<%= event['summary'] %>","<%= duration %>", "<%= event['start']['dateTime'] %>");
-	console.log(lol.title);
-<% end %> -->
 
 <% end %>

@@ -26,7 +26,7 @@ class TodosController < ApplicationController
 			event = Event.new
 			event.title = todo.title
 			event.duration = todo.duration
-			event.start = get_next_time_slot(event.duration)
+			event.start = get_next_time_slot(event.duration).utc
 			if event.valid?
 				#Need to destroy todo
 				todo.destroy

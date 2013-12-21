@@ -11,11 +11,8 @@ module CalendarHelper
 
 	def get_next_time_slot(event_duration = 5)
 		current_time = Time.zone.now
-		puts current_user.events.size
 		counter = 1
     current_user.events.each do |event|
-    	puts counter.to_s
-      puts event.inspect
       #check if event is in the past
       if current_time > event.start + event.duration.minutes
       	counter = counter + 1

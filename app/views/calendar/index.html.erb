@@ -2,6 +2,11 @@
 	<%= render partial: 'calendar/calendar_tab/calendar_tab' %>
 	<%= render partial: 'calendar/todo_tab/todo_tab' %>
 	<%= render partial: 'calendar/activity_tab/activity_tab' %>
+	<script type="text/javascript">
+		//Writes ruby variables for use by js
+		var user_time_zone = '<%= current_user.time_zone %>';
+		var user_base_time = '<%= @base_time %>';
+	</script>
 	<div>
 		<%= debug(@result.data) if Rails.env.development? %>
 	</div>

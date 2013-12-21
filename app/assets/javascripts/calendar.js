@@ -7,8 +7,6 @@ $(document).ready(function() {
 
 	event_tracking();
 
-	
-
 	var current_time_bar_scroll_top = parseInt($('#current_time_bar').css('top'), 10);
 	$('#calendar').scrollTop(current_time_bar_scroll_top - 100);
 
@@ -29,12 +27,11 @@ $(document).ready(function() {
 	$('#activity_container').on('prepend_activity',function() {$('#activity_count_badge').html(parseInt($('#activity_count_badge').html(), 10) +1);});
 
 	load_google_events();
-	
 });
 
 //Objects
 function Cal_Event(title, duration, start) {
-		var start_moment = moment(start, "YYYY-MM-DD HH:mm:ss Z");
+		var start_moment = moment(start, "YYYY-MM-DD HH:mm:ss Z").zone(user_base_time);
 		var end_moment = moment(start_moment);
 		end_moment.add("seconds", parseInt(duration,10));
 
@@ -43,15 +40,15 @@ function Cal_Event(title, duration, start) {
 		this.start = start_moment;
 		this.end = end_moment;
 		//Decompose following three lines later
-		this.inPast = moment() > this.end;
-		this.inFuture = moment() < this.start;
+		this.inPast = moment().zone(user_base_time) > this.end;
+		this.inFuture = moment().zone(user_base_time) < this.start;
 		this.isHappening = !this.inPast && !this.inFuture
 	}
 
 //Functions
 function update_current_time_bar_position() {
-	var now = moment();
-	var now_end = moment(now).endOf('minute');
+	var now = moment().zone(user_base_time);
+	var now_end = moment(now).zone(user_base_time).endOf('minute');
 	var block_duration = 5;
 	var block_height = 25;
 	var num_blocks = (now.hours() * 60 + now.minutes()) / block_duration;
@@ -83,7 +80,7 @@ function event_tracking() {
 		future_events.sort(sort_events_reverse_chrono_end);
 	});	
 	
-	var millisTillNextMin = moment().endOf('minute'); - moment();;
+	var millisTillNextMin = moment().zone(user_base_time).endOf('minute'); - moment().zone(user_base_time);
 	setTimeout(move_current_time_bar(true),millisTillNextMin);
 }
 
@@ -107,7 +104,7 @@ function move_current_time_bar(first) {
 	}
 	if(self.future_events.length > 0) {
 		//need to guarantee the end of the first event is before the start of the second
-		if(moment() > self.future_events[self.future_events.length-1].end) {
+		if(moment().zone(user_base_time) > self.future_events[self.future_events.length-1].end) {
 			if(self.future_events.length > 1) {
 				//Check if space between next event is more than 5 minutes. Need to account for time
 				//user takes to respond and add an event. A strict 5 minutes wont work.

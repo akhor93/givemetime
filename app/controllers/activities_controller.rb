@@ -25,7 +25,7 @@ class ActivitiesController < ApplicationController
 			event = Event.new
 			event.title = activity.title
 			event.duration = activity.duration
-			event.start = get_next_time_slot(event.duration)
+			event.start = get_next_time_slot(event.duration).utc
 			if event.valid?
 				#Need to destroy activity
 				result = submit_event(event)
