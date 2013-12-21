@@ -30,7 +30,7 @@ development:
   database: db/development
   username: Khor Laptop
   password: secret
-  encoding: utf8
+  encoding: unicode
   pool: 5
   timeout: 5000
 
@@ -41,12 +41,14 @@ test:
   adapter: postgresql
   database: db/test
   password: secret
+  encoding: unicode
   pool: 5
   timeout: 5000
 
 production:
   adapter: postgresql
-  database: db/production
+  database: givemetime_production
+  encoding: unicode
   password: secret
   pool: 5
   timeout: 5000
