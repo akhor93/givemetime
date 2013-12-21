@@ -1,5 +1,14 @@
 <% if @todo.valid? %>
+	//Add to list pane
 	$('#todo_container').prepend("<%= j render(:partial => 'todos/todo', :locals => {todo: @todo}) %>").trigger('prepend_todo');
+
+	//Add to todo tab table
+	$('#todos_table tr:first').after("<%= j render(:partial => 'calendar/todo_tab/todo_row', :locals => {todo: @todo, count: 1}) %>");
+	updateRowIndicies('todos_table');
 <% else %>
 	alert('Enter all fields');
 <% end %>
+
+
+
+	

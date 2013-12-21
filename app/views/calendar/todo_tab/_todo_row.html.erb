@@ -1,0 +1,8 @@
+<tr id="todo_row_<%= todo.id %>">
+	<td class="index_cell"><%= count %></td>
+	<td><%= todo.title %></td>
+	<td><%= todo.duration %> mins</td>
+	<td><%= todo.created_at %></td>
+	<td>TO BE ADDED</td>
+	<td><%= render partial: 'calendar/todo_tab/action_menu', locals: {todo: todo} %></td>
+</tr>

@@ -27,7 +27,7 @@ class ActivitiesController < ApplicationController
 				event.save
 				@event = result.data
 				respond_to do |format|
-  				format.js { render 'events/create' }
+  				format.js { render 'events/create', :locals => { :source => :activity } }
 				end
 			else
 				puts event.errors.full_messages.first

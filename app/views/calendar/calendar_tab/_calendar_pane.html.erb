@@ -1,0 +1,24 @@
+<div id="calendar_pane" class="col-lg-6">
+	<div id="day_title_box">
+		<h2>
+			<%= @day.date.strftime('%A') %>
+			(
+			<%= @day.date.strftime('%m/%d') %>)
+		</h2>
+	</div>
+	<div id="calendar">
+		<table id="calendar_table" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td id='calendar_times'>
+					<%= render partial: 'intervals' %>
+				</td>
+				<td id="calendar_events">
+					<div id="event_container">
+						<%= render partial: 'background' %>
+						<%= render partial: 'current_time_bar' %>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

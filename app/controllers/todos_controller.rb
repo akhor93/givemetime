@@ -3,23 +3,34 @@ class TodosController < ApplicationController
 
 	def create
 		@todo = current_user.todos.create(params[:todo])
+		respond_to do |format|
+			format.js {}
+		end
 	end
 
 	def destroy
 		todo = current_user.todos.find(params[:id])
-		@todo_id = todo.id
-		todo.destroy
+		unless todo.nil?
+			@todo_id = todo.id
+			todo.destroy
+			respond_to do |format|
+				format.js {}
+			end
+		end
+		
 	end
 
 	def to_event
 		todo = current_user.todos.find(params[:id])
 		unless todo.nil?
+			todo_id = todo.id
 			event = Event.new
 			event.title = todo.title
 			event.duration = todo.duration
 			event.start = get_next_time_slot(event.duration)
 			if event.valid?
 				#Need to destroy todo
+				todo.destroy
 				result = submit_event(event)
 				event.google_etag = result.data['etag']
 				event.user_id = current_user.id
@@ -27,7 +38,7 @@ class TodosController < ApplicationController
 				event.save
 				@event = result.data
 				respond_to do |format|
-  				format.js { render 'events/create' }
+  				format.js { render 'events/create', :locals => { :source => :todo, :id => todo_id} }
 				end
 			else
 				puts event.errors.full_messages.first

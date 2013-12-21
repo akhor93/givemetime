@@ -1,3 +1,7 @@
 Add moving line that moves downward over time and indicates the current time. When an event is completely above this line, remove the event. Another way to look at this is that the line stays still and its background moves up so that the times on the left disappear.
 
 Clicking on event opens a hover menu
+
+Add checkbox to todo form that says "add to calendar immediately"
+
+See todo in event/create.js

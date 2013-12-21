@@ -1,1 +1,8 @@
+//Remove from list pane
 $('#todo_<%= @todo_id %>').remove();
+//Update badge
+decrementBadge('todo_count_badge');
+
+//Remove from todo tab table
+$('#todo_row_' + '<%= @todo_id  %>').remove();
+updateRowIndicies('todos_table');

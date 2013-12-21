@@ -22,9 +22,8 @@ $(document).ready(function() {
 		i.toggleClass('glyphicon-chevron-down glyphicon-chevron-right');
 	});
 
-	//Set increment and decrement for todo badge
+	//Set increment
 	$('#todo_container').on('prepend_todo',function() {$('#todo_count_badge').html(parseInt($('#todo_count_badge').html(), 10) +1);});
-	$('.add_todo_form').bind('ajax:complete', function() {$('#todo_count_badge').html(parseInt($('#todo_count_badge').html(), 10) -1);});
 
 	//Set increment for activity badge
 	$('#activity_container').on('prepend_activity',function() {$('#activity_count_badge').html(parseInt($('#activity_count_badge').html(), 10) +1);});
@@ -86,6 +85,19 @@ function event_tracking() {
 	
 	var millisTillNextMin = moment().endOf('minute'); - moment();;
 	setTimeout(move_current_time_bar(true),millisTillNextMin);
+}
+
+function updateRowIndicies(table_id) {
+	//0 for the header row
+	var count = 0;
+	$('#' + table_id + ' tr').each(function() {
+		$(this).find('.index_cell').html(count);
+		count += 1;
+	});
+}
+
+function decrementBadge(badge_id) {
+	$('#' + badge_id).html(parseInt($('#' + badge_id).html(), 10) -1);
 }
 
 function move_current_time_bar(first) {
