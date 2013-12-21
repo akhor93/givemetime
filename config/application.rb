@@ -62,7 +62,5 @@ module GiveMeTime
 
     #enables fonts for the asset pipeline
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
-
-    # config.assets.precompile += ['']
   end
 end
