@@ -1,0 +1,8 @@
+<tr id="activity_row_<%= activity.id %>">
+	<td class="index_cell"><%= count %></td>
+	<td><%= activity.title %></td>
+	<td><%= activity.duration %> mins</td>
+	<td><%= activity.created_at %></td>
+	<td>TO BE ADDED</td>
+	<td><%= render partial: 'calendar/activity_tab/action_menu', locals: {activity: activity} %></td>
+</tr>

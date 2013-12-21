@@ -17,7 +17,6 @@ class TodosController < ApplicationController
 				format.js {}
 			end
 		end
-		
 	end
 
 	def to_event

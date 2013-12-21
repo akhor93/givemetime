@@ -1,5 +1,10 @@
 <% if @activity.valid? %>
+	//Add to list pane
 	$('#activity_container').prepend("<%= j render(:partial => 'activities/activity', :locals => {activity: @activity}) %>").trigger('prepend_activity');
+
+	//Add to activity tab table
+	$('#activities_table tr:first').after("<%= j render(:partial => 'calendar/activity_tab/activity_row', :locals => {activity: @activity, count: 1}) %>");
+	updateRowIndicies('activities_table');
 <% else %>
 	alert('Enter all fields');
-<% end %>
+<% end %>	

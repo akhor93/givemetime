@@ -3,12 +3,20 @@ class ActivitiesController < ApplicationController
 
 	def create
 		@activity = current_user.activities.create(params[:activity])
+		respond_to do |format|
+			format.js {}
+		end
 	end
 
 	def destroy
 		activity = current_user.activities.find(params[:id])
-		@activity_id = activity.id
-		activity.destroy
+		unless activity.nil?
+			@activity_id = activity.id
+			activity.destroy
+			respond_to do |format|
+				format.js {}
+			end
+		end
 	end
 
 	def to_event

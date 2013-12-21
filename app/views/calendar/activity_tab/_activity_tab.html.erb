@@ -1,3 +1,23 @@
 <div class="tab-pane fade" id="activities_tab">
-	Activities
+	<div class="container">
+		<table class="table table-hover" id="activities_table" style="margin-top:10px;">
+			<thead>
+				<tr>
+					<td>#</td>
+					<td>Title</td>
+					<td>Duration</td>
+					<td>Created At</td>
+					<td>Priority</td>
+					<td>Actions</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% count = 1 %>
+				<% current_user.activities.each do |activity| %>
+					<%= render partial: 'calendar/activity_tab/activity_row', locals: {activity: activity, count: count} %>
+					<% count = count + 1 %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
 </div>
