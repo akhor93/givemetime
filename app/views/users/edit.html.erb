@@ -58,13 +58,13 @@
 					<%= f.label :time_zone, :class => 'control-label' %>
 				</div>
 				<div class="col-md-10">
-					<select class="form-control">
+					<select class="form-control" id="user_time_zone" name="user[time_zone]" type="text">
 						<% ActiveSupport::TimeZone.us_zones.each do |zone| %>
 							<% puts current_user.time_zone %>
 							<% if zone.name == current_user.time_zone %>
-								<option selected="selected"><%= zone %></option>
+								<option selected="selected" value="<%= zone.name %>"><%= zone %></option>
 							<% else %>
-								<option><%= zone %></option>
+								<option value="<%= zone.name %>"><%= zone %></option>
 							<% end %>
 						<% end %>
 					</select>

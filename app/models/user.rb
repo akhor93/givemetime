@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :uid, :g_email, :access_token, :refresh_token, :expires_in, :issued_at
+	attr_accessible :first_name, :last_name, :email, :time_zone, :password, :password_confirmation, :uid, :g_email, :access_token, :refresh_token, :expires_in, :issued_at
 	
 	attr_accessor :password
 
