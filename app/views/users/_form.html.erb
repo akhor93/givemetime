@@ -1,56 +1,47 @@
-<%= form_for @user, :html => { :class => 'form-horizontal'} do |f| %>
-<% if @user.errors.any? %>
-<div id="error_explanation">
-  <h2>
-    <%= pluralize(@user.errors.count, "error") %>
-    prohibited this user from being saved:
-  </h2>
-
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-    <li>
-      <%= msg %></li>
-    <% end %></ul>
-</div>
-<% end %>
-
-<div class="form-group">
-  <%= f.label :first_name, :class => 'control-label' %>
-  <br />
-  <div class="controls">
-    <%= f.text_field :first_name, :class => 'text_field' %>
+<%= form_for @user, html: { :method => :post, :remote => true,class: "form-horizontal" } do |f| %>
+  
+  <div class="alert alert-danger" id="signup_errors" style="display:none;">
   </div>
-</div>
-<div class="form-group">
-  <%= f.label :last_name, :class => 'control-label' %>
-  <br />
-  <div class="controls">
-    <%= f.text_field :last_name, :class => 'text_field' %>
+  <div class="form-group">      
+    <%= f.label :first_name, "First Name", :class => "control-label col-sm-3" %>
+    <div class="col-sm-9">
+      <%= f.text_field :first_name, placeholder: "First Name", :class => "form-control" %>
+    </div>
   </div>
-</div>
-<div class="form-group">
-  <%= f.label :email, :class => 'control-label' %>
-  <br />
-  <div class="controls">
-    <%= f.text_field :email, :class => 'text_field' %>
+  <div class="form-group">      
+    <%= f.label :last_name, "Last Name", :class => "control-label col-sm-3" %>
+    <div class="col-sm-9">
+      <%= f.text_field :last_name, placeholder: "Last Name", :class => "form-control" %>
+    </div>
   </div>
-</div>
-<div class="form-group">
-  <%= f.label :password, :class => 'control-label' %>
-  <br />
-  <div class="controls">
-    <%= f.text_field :password, :class => 'text_field' %>
+  <div class="form-group">      
+    <%= f.label :email, :class => "control-label col-sm-3" %>
+    <div class="col-sm-9">
+      <%= f.text_field :email, placeholder: "Email", :class => "form-control" %>
+    </div>
   </div>
-</div>
-<div class="form-group">      
-  <%= f.label :password_confirmation, "Password Confirmation", :class => "control-label" %>
-    <div>
+  <div class="form-group">      
+    <%= f.label :password, :class => "control-label col-sm-3" %>
+    <div class="col-sm-9">
+      <%= f.password_field :password, placeholder: "Password", :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">      
+    <%= f.label :password_confirmation, "Password Confirmation", :class => "control-label col-sm-3" %>
+    <div class="col-sm-9">
       <%= f.password_field :password_confirmation, placeholder: "Type Password Again", :class => "form-control" %>
     </div>
   </div>
-<div class="form-actions">
-  <%= f.submit nil, :class => 'btn btn-primary'%>
-  <%= link_to 'Show', @user, :class => 'btn btn-default' %>
-  <%= link_to 'Back', users_path, :class => 'btn btn-default' %>
-</div>
+  <div class="form-group">      
+    <%= f.label 'Beta Access Code', :class => "control-label col-sm-3" %>
+    <div class="col-sm-9">
+      <input class="form-control" id="beta_access_code" name="beta_access_code" placeholder="Beta Access Code (given by Andrew)" type="text">
+      <!--<%= text_field_tag "beta_access_code"%> -->
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <%= f.submit "Create Account", :class => "btn btn-primary" %>
+    </div>
+  </div>      
 <% end %>

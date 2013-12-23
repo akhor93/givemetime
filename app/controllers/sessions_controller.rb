@@ -14,11 +14,7 @@ class SessionsController < ApplicationController
   			format.js {render :redirect} #javascript to do the redirect
   		else
   			format.html { render :new }
-  			format.js #defaults to create.js.erb
-  			#format.json { render json: user.errors}
-  			#flash[:error] = "Wrong Username or Password"
-  			#render 'new'
-  			#redirect_to root_url
+  			format.js {}
   		end
   	end
   	

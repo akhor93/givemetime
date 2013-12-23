@@ -1,0 +1,4 @@
+<% @user.errors.full_messages.each do |message| %>
+  $('#signup_errors').append('<div><%= message %></div>');
+<% end %>
+$('#signup_errors').show();

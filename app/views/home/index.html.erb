@@ -68,50 +68,7 @@
           <h4 class="modal-title" id="myModalLabel">Create Account</h4>
         </div>
         <div class="modal-body">
-        	<%= form_for @user, html: {class: "form-horizontal"} do |f| %>        	
-        		<% if @user.errors.any? %>        	
-        			<ul>
-        				<% @user.errors.full_messages.each do |message| %>        	
-        					<li><%= message %></li>
-        				<% end %>
-        			</ul>
-        		<% end %>
-            <div class="form-group">     	
-              <%= f.label :first_name, "First Name", :class => "control-label col-sm-3" %>
-              <div class="col-sm-9">
-                <%= f.text_field :first_name, placeholder: "First Name", :class => "form-control" %>
-              </div>
-            </div>
-            <div class="form-group">      
-              <%= f.label :last_name, "Last Name", :class => "control-label col-sm-3" %>
-              <div class="col-sm-9">
-                <%= f.text_field :last_name, placeholder: "Last Name", :class => "form-control" %>
-              </div>
-            </div>
-            <div class="form-group">      
-              <%= f.label :email, :class => "control-label col-sm-3" %>
-              <div class="col-sm-9">
-                <%= f.text_field :email, placeholder: "Email", :class => "form-control" %>
-              </div>
-            </div>
-            <div class="form-group">      
-              <%= f.label :password, :class => "control-label col-sm-3" %>
-              <div class="col-sm-9">
-                <%= f.password_field :password, placeholder: "Password", :class => "form-control" %>
-              </div>
-            </div>
-            <div class="form-group">      
-              <%= f.label :password_confirmation, "Password Confirmation", :class => "control-label col-sm-3" %>
-              <div class="col-sm-9">
-                <%= f.password_field :password_confirmation, placeholder: "Type Password Again", :class => "form-control" %>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-offset-3 col-sm-9">
-        		    <%= f.submit "Create Account", :class => "btn btn-primary" %>
-              </div>
-            </div>     	
-        	<% end %>        	
+          <%= render :partial => 'users/form' %>
         </div>
         <!-- <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -130,26 +87,27 @@
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <!--
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
+        -->
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <%= image_tag('carousel1.jpg') %>
+          <%= image_tag 'carousel1.jpg', :style => 'margin: 0 auto;' %>
           <div class="container">
             <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>
-                Note: If you're viewing this page via a
-                <code>file://</code>
-                URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.
+              <h1 style="font-size: 60px">GiveMeTime Beta Release</h1>
+              <p style="font-size: 24px">
+                Enjoy using this service if you are one of Andrew's close friends and family.
               </p>
               <p>
-                <a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a>
+                <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#sign_up_modal">Sign Up</button>
               </p>
             </div>
           </div>
         </div>
+        <!--
         <div class="item">
           <%= image_tag('carousel2.jpg') %>
           <div class="container">
@@ -178,6 +136,7 @@
             </div>
           </div>
         </div>
+        -->
       </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -199,18 +158,18 @@
 
     <div class="row">
       <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+        <h2>Google Calendar Sync</h2>
+        <p>Your calendar on GiveMeTime requires Google Calendar to sync your events. This way, after adding event, you can continue to view those events from your mobile device (using Google Calendar).</p>
         <p><a class="btn btn-default" href="#" role="button">View Details</a></p>
       </div>
       <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+        <h2>To-Dos &amp; Activities</h2>
+        <p>Add to-dos and activites to easily accessible lists, to be added into your calendar when you have free time.</p>
         <p><a class="btn btn-default" href="#" role="button">View Details</a></p>
       </div>
       <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+        <h2>Single Page</h2>
+        <p>Manage your entire calendar from one page. No more waiting for pages to load. Revolutionize the way you manage your time</p>
         <p><a class="btn btn-default" href="#" role="button">View Details</a></p>
       </div>
     </div>
@@ -223,7 +182,7 @@
         <a href="#">Back to top</a>
       </p>
       <p>
-        &copy; 2013 Company, Inc. &middot;
+        &copy; GiveMeTime by Andrew Khor &middot;
         <a href="#">Privacy</a>
         &middot;
         <a href="#">Terms</a>

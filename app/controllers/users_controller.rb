@@ -47,18 +47,20 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    beta_access_code = params["beta_access_code"]
     @user = User.new(params[:user])
     @user.confirmed = false
     @user.time_created = Time.now
     @user.admin = false
     respond_to do |format|
-      if @user.save
+      if beta_access_code != "PPEOTSOD"
+        @user.errors.add(:base, "Incorrect Access Code")
+        format.js {}
+      elsif @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to calendar_index_path, notice: 'Thank you for signing up for GiveMeTime!' }
-        format.json { render json: @user, status: :created, location: @user }
+        format.js {render 'sessions/redirect'} #javascript to do the redirect
       else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.js {}
       end
     end
   end
