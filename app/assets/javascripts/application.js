@@ -17,5 +17,4 @@
 //= require jquery.mousewheel
 //= require perfect-scrollbar
 //= require moment-with-langs
-//= require_tree .
 

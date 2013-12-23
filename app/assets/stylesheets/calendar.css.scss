@@ -5,6 +5,7 @@
 	width:100%;
 	height: 100%;
 	background-color: #efefef;
+	overflow-x: hidden;
 	#calendar_tab {
 		width: 100%;
 		height: 100%;
@@ -46,9 +47,12 @@
 						height: 100%;
 						.calendar_event {
 							position:absolute;
-							width: 200px;
+							width: 250px;
 							background-color: #729BB9;
 							@include border-radius(4px);
+							font-weight:800;
+							font-size: 16px;
+							padding-left: 4px;
 						}
 						.todo_event {
 							background-color: #4DB810;
@@ -109,7 +113,7 @@
 			}
 			#todo_container {
 				.todo {
-					height: 50px;
+					height: 100%;
 					margin-bottom: 10px;
 					border-bottom: 2px dotted #CCCCCC;
 					.todo_title {
@@ -119,7 +123,7 @@
 			}
 			#activity_container {
 				.activity {
-					height: 50px;
+					height: 100%;
 					margin-bottom: 10px;
 					border-bottom: 2px dotted #CCCCCC;
 					.activity_title {

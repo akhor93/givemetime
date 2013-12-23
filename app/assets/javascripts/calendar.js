@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	if(typeof user_base_time == 'undefined') user_base_time = '-08:00';
 	$('.todo_duration_button').click(update_duration);
 	$('.activity_duration_button').click(update_duration);
 	$('.event_duration_button').click(update_duration);

@@ -47,8 +47,6 @@ gem 'rails_12factor', group: :production
 #Custom Gems HERE 
 gem 'validates_email_format_of'
 gem 'bourbon' #SASS Mixin Library
-gem 'tzinfo'
-gem 'tzinfo-data'
 
 #once on MAC install sidekiq to use background processing
 
