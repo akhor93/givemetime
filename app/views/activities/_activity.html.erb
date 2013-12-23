@@ -1,10 +1,10 @@
 <div class="activity" id="activity_<%= activity.id %>">
-	<div style="float:left; width:75%;">
+	<div style="float:left; width:70%;">
 		<span class="activity_title"><%= activity.title %></span>
 		<br />
 		<%= activity.duration %> min
 	</div>
-	<div style="float:left; width:25%;">
+	<div style="float:left; width:30%;">
 		<%= form_for :activity, url: to_event_activity_path(activity.id), html: { :remote => true, :method => :post, :class => "add_activity_form" } do |f| %>
 			<%= f.submit "Add", { :class => "btn btn-primary" } %>
 		<% end %>

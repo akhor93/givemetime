@@ -1,10 +1,10 @@
 <div class="todo" id="todo_<%= todo.id %>">
-	<div style="float:left; width:75%;">
+	<div style="float:left; width:70%;">
 		<span class="todo_title"><%= todo.title %></span>
 		<br />
 		<%= todo.duration %> min
 	</div>
-	<div style="float:left; width:25%;">
+	<div style="float:left; width:30%;">
 		<%= form_for :todo, url: to_event_todo_path(todo.id), html: { :remote => true, :method => :post, :class => "add_todo_form" } do |f| %>
 			<%= f.submit "Add", { :class => "btn btn-primary" } %>
 		<% end %>

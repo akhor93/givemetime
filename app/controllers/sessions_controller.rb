@@ -10,10 +10,8 @@ class SessionsController < ApplicationController
   		@user = User.authenticate(params[:session][:email], params[:session][:password])
   		if @user
   			session[:user_id] = @user.id
-  			format.html { redirect_to user_path, notice: "Logged In!" }
   			format.js {render :redirect} #javascript to do the redirect
   		else
-  			format.html { render :new }
   			format.js {}
   		end
   	end

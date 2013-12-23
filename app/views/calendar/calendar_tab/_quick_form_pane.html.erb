@@ -4,7 +4,9 @@
 	<br />
 	<h2>Add Activity</h2>
 	<%= render 'activities/activity_form' %>
-	<br />
-	<h2>Add Custom Event</h2>
-	<%= render 'events/event_form' %>
+	<% if Rails.env.development? %>
+		<br />
+		<h2>Add Custom Event</h2>
+		<%= render 'events/event_form' %>
+	<% end %>
 </div>
