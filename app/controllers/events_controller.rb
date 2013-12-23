@@ -22,6 +22,13 @@ class EventsController < ApplicationController
 	end
 
 	def destroy
-
+		event = current_user.events.find(params[:id])
+		unless event.nil?
+			@event_id = event.id
+			event.destroy
+			respond_to do |format|
+				format.js {}
+			end
+		end
 	end
 end

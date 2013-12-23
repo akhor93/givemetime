@@ -1,54 +1,138 @@
-<% if current_user %>
-  <%= link_to "Log Out", session_path, :method => :delete %>
-<% else %>
-    Not Logged In
-<% end %>
-<div class="container">
-    <h1>Listing users</h1>
+<ul class="nav nav-tabs">
+  <li><a href="#users_tab" data-toggle="tab">Users</a></li>
+  <li><a href="#todos_tab" data-toggle="tab">To-Dos</a></li>
+  <li><a href="#activities_tab" data-toggle="tab">Activities</a></li>
+  <li><a href="#events_tab" data-toggle="tab">Events</a></li>
+</ul>
 
-    <table class="table table-striped">
+<div class="tab-content">
+  <div class="tab-pane in active" id="users_tab">
+    <div class="container">
+      <h1>Listing users</h1>
+      <table class="table table-striped">
         <tr>
-            <th>Id</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Confirmed</th>
-            <th>Time created</th>
-            <th>Admin</th>
-            <th></th>
-            <th></th>
-            <th></th>
+          <th>Id</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Time Zone</th>
+          <th>Time created</th>
+          <th>Admin</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
-
         <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.time_zone %></td>
+            <td><%= user.created_at %></td>
+            <td><%= user.admin %></td>
+            <td>
+              <%= link_to 'Edit', edit_user_path(user), :class =>"btn btn-primary" %>
+            </td>
+            <td>
+              <%= link_to 'Destroy', user, method: :delete, :class =>"btn btn-danger", data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="tab-pane" id="todos_tab">
+    <div class="container">
+      <h1>Listing Todos</h1>
+      <table class="table table-striped">
         <tr>
-            <td>
-                <%= user.id %></td>
-            <td>
-                <%= user.first_name %></td>
-            <td>
-                <%= user.last_name %></td>
-            <td>
-                <%= user.email %></td>
-            <td>
-                <%= user.password %></td>
-            <td>
-                <%= user.confirmed %></td>
-            <td>
-                <%= user.time_created %></td>
-            <td>
-                <%= user.admin %></td>
-            <td>
-                <%= link_to 'Show', user, :class => "btn btn-info" %></td>
-            <td>
-                <%= link_to 'Edit', edit_user_path(user), :class => "btn btn-primary" %></td>
-            <td>
-                <%= link_to 'Destroy', user, method: :delete, :class => "btn btn-danger", data: { confirm: 'Are you sure?' } %></td>
+          <th>Id</th>
+          <th>User Id</th>
+          <th>User Name</th>
+          <th>Title</th>
+          <th>Duration</th>
+          <th>Time Created</th>
+          <th>Delete</th>
         </tr>
-        <% end %></table>
-
-    <br />
-
-    <%= link_to 'New User', new_user_path, :class => "btn btn-primary" %>
+        <% @todos.each do |todo| %>
+          <tr id="todo_<%= todo.id %>">
+            <td><%= todo.id %></td>
+            <td><%= todo.user_id %></td>
+            <td><%= User.find(todo.user_id).full_name %></td>
+            <td><%= todo.title %></td>
+            <td><%= todo.duration %> mins</td>
+            <td><%= todo.created_at %></td>
+            <td>
+              <%= link_to 'Destroy', todo_path(todo.id), method: :delete, html: { :remote => true, :method => :post, :class => "btn btn-danger" }, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="tab-pane" id="activities_tab">
+    <div class="container">
+      <h1>Listing Activities</h1>
+      <table class="table table-striped">
+        <tr>
+          <th>Id</th>
+          <th>User Id</th>
+          <th>User Name</th>
+          <th>Title</th>
+          <th>Duration</th>
+          <th>Time Created</th>
+          <th>Delete</th>
+        </tr>
+        <% @activities.each do |activity| %>
+          <tr id="activity_<%= activity.id %>">
+            <td><%= activity.id %></td>
+            <td><%= activity.user_id %></td>
+            <td><%= User.find(activity.user_id).full_name %></td>
+            <td><%= activity.title %></td>
+            <td><%= activity.duration %> mins</td>
+            <td><%= activity.created_at %></td>
+            <td>
+              <%= link_to 'Destroy', activity_path(activity.id), method: :delete, html: { :remote => true, :method => :post, :class => "btn btn-danger" }, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="tab-pane" id="events_tab">
+    <div class="container">
+      <h1>Listing Events</h1>
+      <table class="table table-striped">
+        <tr>
+          <th>Id</th>
+          <th>User Id</th>
+          <th>User Name</th>
+          <th>Title</th>
+          <th>Duration</th>
+          <th>Start</th>
+          <th>Google Etag</th>
+          <th>Allocated</th>
+          <th>Time Created</th>
+          <th>Delete</th>
+        </tr>
+        <% @events.each do |event| %>
+          <tr id="event_<%= event.id %>">
+            <td><%= event.id %></td>
+            <td><%= event.user_id %></td>
+            <td><%= User.find(event.user_id).full_name %></td>
+            <td><%= event.title %></td>
+            <td><%= event.duration %> mins</td>
+            <td><%= event.start %></td>
+            <td><%= event.google_etag %></td>
+            <td><%= event.allocated %></td>
+            <td><%= event.created_at %></td>
+            <td>
+              <%= link_to 'Destroy', event_path(event.id), method: :delete, html: { :remote => true, :method => :post, :class => "btn btn-danger" }, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>
+

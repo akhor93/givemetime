@@ -13,7 +13,8 @@ $(document).ready(function() {
 
 	$('#calendar').perfectScrollbar({
 		wheelSpeed: 150,
-		minScrollbarLength: 200
+		minScrollbarLength: 200,
+		suppressScrollX: true
 	});
 
 	$('.collapse').on('show.bs.collapse hide.bs.collapse', function() {
