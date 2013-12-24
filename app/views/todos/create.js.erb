@@ -5,6 +5,9 @@
 	//Add to todo tab table
 	$('#todos_table tr:first').after("<%= j render(:partial => 'calendar/todo_tab/todo_row', :locals => {todo: @todo, count: 1}) %>");
 	updateRowIndicies('todos_table');
+
+	//Clear form
+	reset_quick_form('todo');
 <% else %>
 	alert('Enter all fields');
 <% end %>	

@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	if(typeof user_base_time == 'undefined') user_base_time = '-08:00';
+	$('#todo_duration').numeric();
+
 	$('.todo_duration_button').click(update_duration);
 	$('.activity_duration_button').click(update_duration);
 	$('.event_duration_button').click(update_duration);
@@ -136,6 +138,12 @@ function move_current_time_bar(first) {
 
 	$('#current_time_bar').css('top',"+=5");
 	setTimeout(move_current_time_bar, 60000);
+}
+
+function reset_quick_form(type) {
+	var form = $('#' + type + '_quick_form');
+	form[0].reset();
+	form.find(".active").removeClass('active');
 }
 
 //Ajax Functions

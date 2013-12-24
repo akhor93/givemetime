@@ -1,4 +1,4 @@
-<%= form_for :todo, url: todos_path, html: { :method => :post, :remote => true, class: "form-horizontal"} do |f| %>
+<%= form_for :todo, url: todos_path, html: { :method => :post, :remote => true, class: "form-horizontal", :id => "todo_quick_form"} do |f| %>
   <div class="alert alert-danger" id="event_errors" style="display:none;"></div>
   <div class="form-group">
     <%= f.label 'Title', :class => "control-label col-sm-3" %>
@@ -9,17 +9,24 @@
   <div class="form-group">
     <%= f.label 'Duration (min)', :class => "control-label col-sm-3" %>
     <div class="col-sm-9">
-      <%= f.hidden_field :duration %>
-      <button type="button" id="duration_button_5" class="btn btn-default btn-lg todo_duration_button" data-category="todo">  5
-      </button>
-      <button type="button" id="duration_button_10" class="btn btn-default btn-lg todo_duration_button" data-category="todo">  10
-      </button>
-      <button type="button" id="duration_button_15" class="btn btn-default btn-lg todo_duration_button" data-category="todo">	15
-      </button>
-      <button type="button" id="duration_button_30" class="btn btn-default btn-lg todo_duration_button" data-category="todo">	30
-      </button>
-      <button type="button" id="duration_button_60" class="btn btn-default btn-lg todo_duration_button" data-category="todo">	60
-      </button>
+      <div class="form-horizontal">
+        <button type="button" id="duration_button_5" class="btn btn-default btn-lg todo_duration_button" data-category="todo">
+          &nbsp;5
+        </button>
+        <button type="button" id="duration_button_10" class="btn btn-default btn-lg todo_duration_button" data-category="todo">
+          10
+        </button>
+        <button type="button" id="duration_button_15" class="btn btn-default btn-lg todo_duration_button" data-category="todo">
+          15
+        </button>
+        <button type="button" id="duration_button_30" class="btn btn-default btn-lg todo_duration_button" data-category="todo">
+          30
+        </button>
+        <button type="button" id="duration_button_60" class="btn btn-default btn-lg todo_duration_button" data-category="todo">
+          60
+        </button>
+        <%= f.text_field :duration, { placeholder: "XX",  :id => "todo_duration", :class => "form-control btn-lg", :maxlength => "2", :style => "height: 100%; width: 60px; display: inline-block;" } %>
+      </div>
     </div>
   </div>
   <div class="form-group">

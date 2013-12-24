@@ -5,6 +5,9 @@
 	//Add to activity tab table
 	$('#activities_table tr:first').after("<%= j render(:partial => 'calendar/activity_tab/activity_row', :locals => {activity: @activity, count: 1}) %>");
 	updateRowIndicies('activities_table');
+
+	//Clear form
+	reset_quick_form('activity');
 <% else %>
 	alert('Enter all fields');
 <% end %>	

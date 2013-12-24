@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require underscore
 //= require jquery.mousewheel
+//= require jquery.numeric
 //= require perfect-scrollbar
 //= require moment-with-langs
 
