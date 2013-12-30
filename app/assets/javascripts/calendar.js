@@ -85,7 +85,9 @@ function event_tracking() {
 	});	
 	
 	var millisTillNextMin = moment().zone(user_base_time).endOf('minute'); - moment().zone(user_base_time);
-	setTimeout(move_current_time_bar(true),millisTillNextMin);
+	setTimeout(function() {
+		move_current_time_bar(true);
+	},millisTillNextMin);
 }
 
 function updateRowIndicies(table_id) {

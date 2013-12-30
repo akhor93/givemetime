@@ -27,7 +27,6 @@ class ActivitiesController < ApplicationController
 			event.duration = activity.duration
 			event.start = get_next_time_slot(event.duration).utc
 			if event.valid?
-				#Need to destroy activity
 				result = submit_event(event)
 				event.google_etag = result.data['etag']
 				event.user_id = current_user.id
