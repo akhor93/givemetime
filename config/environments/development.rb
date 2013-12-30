@@ -33,6 +33,8 @@ GiveMeTime::Application.configure do
 
   config.serve_static_assets = false
 
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+
   ENV['OAUTH_CLIENT_ID'] = '142889764326-hvt1ba1us5fslo0dlpc19fa9vulrigmi.apps.googleusercontent.com'
   ENV['OAUTH_CLIENT_SECRET'] = 'JdUfe9hBg1OafxvPUu2mFliy'
 end

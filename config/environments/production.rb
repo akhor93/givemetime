@@ -77,6 +77,8 @@ GiveMeTime::Application.configure do
   
   config.assets.initialize_on_precompile = false;
 
+  config.action_mailer.default_url_options = { :host => "givemetime.herokuapp.com" }
+
   #don't work? save for later I guess
   #add the fonts path
   #config.assets.paths << Rails.root.join('app', 'assets', 'fonts')

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131230094300) do
+ActiveRecord::Schema.define(version: 20131230115535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,11 +56,13 @@ ActiveRecord::Schema.define(version: 20131230094300) do
     t.integer  "expires_in"
     t.datetime "issued_at"
     t.boolean  "confirmed"
-    t.string   "time_zone",       default: "Pacific Time (US & Canada)"
+    t.string   "time_zone",              default: "Pacific Time (US & Canada)"
     t.datetime "time_created"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
 end

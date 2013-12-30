@@ -1,0 +1,9 @@
+<% if @user %>
+	$('#password_reset_success').empty().html('Please Check Your Email to Reset Your Password');
+	$('#password_reset_success').show();
+	$('#password_reset_errors').hide();
+<% else %>
+	$('#password_reset_errors').empty().html('No Matching User');
+	$('#password_reset_errors').show();
+	$('#password_reset_success').hide();
+<% end %>

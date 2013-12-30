@@ -1,4 +1,5 @@
 GiveMeTime::Application.routes.draw do
+  get "password_resets/new"
   get '/oauth2authorize' => 'calendar#oauth2authorize', as: :oauth2authorize
   get '/oauth2callback' => 'calendar#oauth2callback', as: :oauth2callback
   get '/load_google_events' => 'calendar#load_google_events', as: :load_google_events
@@ -7,6 +8,7 @@ GiveMeTime::Application.routes.draw do
   resources :users, :only => [:new, :create, :show, :edit, :update]
   resource :admin, :only => :show
   resource :home, :only => :index
+  resource :password_resets, :only => [:create, :edit, :update]
 
   resources :calendar, :only => :index
   resources :events, :only => [:new, :create, :show, :edit, :update, :destroy]
