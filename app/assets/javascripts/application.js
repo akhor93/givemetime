@@ -17,5 +17,6 @@
 //= require jquery.mousewheel
 //= require jquery.numeric
 //= require perfect-scrollbar
+//= require jstz
 //= require moment-with-langs
 

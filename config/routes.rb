@@ -24,11 +24,6 @@ GiveMeTime::Application.routes.draw do
   #miscellaneous routes for prettier urls
   get '/logout' => 'sessions#destroy', as: :signout
 
-  #forwards logged in users to their show page when they try to access home page
-  constraints lambda { |req| !req.session[:user_id].blank? } do
-    root :to => "calendar#index", :as => "home_to_calendar_redirect"
-  end
-
   root :to => 'home#index'
 
   #*************************************************************

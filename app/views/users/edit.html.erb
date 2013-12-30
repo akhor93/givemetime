@@ -60,7 +60,6 @@
 				<div class="col-md-10">
 					<select class="form-control" id="user_time_zone" name="user[time_zone]" type="text">
 						<% ActiveSupport::TimeZone.us_zones.each do |zone| %>
-							<% puts current_user.time_zone %>
 							<% if zone.name == current_user.time_zone %>
 								<option selected="selected" value="<%= zone.name %>"><%= zone %></option>
 							<% else %>

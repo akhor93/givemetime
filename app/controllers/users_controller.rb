@@ -52,6 +52,8 @@ class UsersController < ApplicationController
     @user.confirmed = false
     @user.time_created = Time.now
     @user.admin = false
+    tz =  ActiveSupport::TimeZone::MAPPING.index(params[:user][:time_zone])
+    @user.time_zone = tz
     respond_to do |format|
       if beta_access_code != "PPEOTSOD"
         @user.errors.add(:base, "Incorrect Access Code")

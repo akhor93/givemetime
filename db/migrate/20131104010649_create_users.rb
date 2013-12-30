@@ -14,7 +14,7 @@ class CreateUsers < ActiveRecord::Migration
       t.timestamp :issued_at
       t.boolean :confirmed
       t.string :time_zone, default: 'Pacific Time (US & Canada)'
-      # t.string :time_zone, default: 'Central Time (US & Canada)'
+      t.string :auth_token
       t.timestamp :time_created
 
       t.timestamps

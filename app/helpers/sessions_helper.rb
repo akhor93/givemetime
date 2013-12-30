@@ -1,16 +1,16 @@
 module SessionsHelper
 
 	def login(user)
-		cookies.signed[:id] = {
-			:value => user.id,
-			:expires => 7.days.from_now
-		}
-		self.current_user = user
+		# cookies.signed[:id] = {
+		# 	:value => user.id,
+		# 	:expires => 7.days.from_now
+		# }
+		# self.current_user = user
 	end
 
 	def logout
-		self.current_user = nil
-		cookies.delete(:id)
+		# self.current_user = nil
+		# cookies.delete(:id)
 	end
 
 	def require_login
@@ -25,7 +25,7 @@ module SessionsHelper
 
 	def require_logout
 		if logged_in?
-			redirect_to current_user
+			redirect_to '/calendar'
 		end
 	end
 
@@ -38,8 +38,6 @@ module SessionsHelper
 	end
 
 	def current_user
-		if session[:user_id]
-			@current_user ||= User.find(session[:user_id])
-		end
+		@current_user ||= User.find_by_auth_token (cookies[:auth_token]) if cookies[:auth_token]
 	end
 end

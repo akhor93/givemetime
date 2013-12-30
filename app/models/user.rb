@@ -1,11 +1,10 @@
 class User < ActiveRecord::Base
 	attr_accessible :first_name, :last_name, :email, :time_zone, :password, :password_confirmation, :uid, :g_email, :access_token, :refresh_token, :expires_in, :issued_at
 	
-	attr_accessor :password
-
-	before_save :encrypt_password
+	has_secure_password
 
 	before_validation :prep_email
+	before_create { generate_token(:auth_token) }
 
 	has_many :activities, dependent: :destroy
 
@@ -17,6 +16,7 @@ class User < ActiveRecord::Base
 
 	validates :first_name, presence: true
 	validates :last_name, presence: true
+	validates :password, presence: true, :on => :create
 	validates :password, confirmation: true
 	validates :email, uniqueness: true, :email_format => {:message => 'ill-formed email'}
 
@@ -24,25 +24,13 @@ class User < ActiveRecord::Base
 		"#{first_name} #{last_name}"
 	end
 
-	private
-
-	def self.authenticate(email,password)
-		user = find_by_email(email)
-		if user && user.password_digest == BCrypt::Engine.hash_secret(password, user.password_salt)
-			user
-		else
-			nil
-		end
-	end
-
-	def encrypt_password
-		if password.present?
-			self.password_salt = BCrypt::Engine.generate_salt
-			self.password_digest = BCrypt::Engine.hash_secret(password, password_salt)
-		end
-	end
-
 	def prep_email
 		self.email = self.email.strip.downcase if self.email
+	end
+
+	def generate_token(column)
+		begin
+			self[column] = SecureRandom.urlsafe_base64
+		end while User.exists?(column => self[column])
 	end
 end

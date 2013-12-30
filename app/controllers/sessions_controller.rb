@@ -2,24 +2,27 @@ class SessionsController < ApplicationController
   layout :choose_layout
 
   def new
-      @user = User.new
+    @user = User.new
   end
 
   def create
+    user = User.find_by_email(params[:session][:email])
   	respond_to do |format|
-  		@user = User.authenticate(params[:session][:email], params[:session][:password])
-  		if @user
-  			session[:user_id] = @user.id
+  		if user && user.authenticate(params[:session][:password])
+  			if params[:session][:remember_me]
+          cookies.permanent[:auth_token] = user.auth_token
+        else
+          cookies[:auth_token] = user.auth_token
+        end
   			format.js {render :redirect} #javascript to do the redirect
   		else
   			format.js {}
   		end
   	end
-  	
   end
 
   def destroy
-  	session[:user_id] = nil
+  	cookies.delete(:auth_token)
   	redirect_to root_url, notice: "Logged Out"
   end
 

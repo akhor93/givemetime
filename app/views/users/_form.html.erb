@@ -1,7 +1,8 @@
-<%= form_for @user, html: { :method => :post, :remote => true,class: "form-horizontal" } do |f| %>
-  
+<%= form_for @user, html: { :method => :post, :remote => true, class: "form-horizontal" } do |f| %>
+  <%= f.hidden_field :time_zone, :value => "Pacific Time (US & Canada)" %>
   <div class="alert alert-danger" id="signup_errors" style="display:none;">
   </div>
+  
   <div class="form-group">      
     <%= f.label :first_name, "First Name", :class => "control-label col-sm-3" %>
     <div class="col-sm-9">
