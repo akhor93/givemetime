@@ -48,7 +48,5 @@ gem 'rails_12factor', group: :production
 gem 'validates_email_format_of'
 gem 'bourbon' #SASS Mixin Library
 
-#once on MAC install sidekiq to use background processing
-
 #Google Calendar and Authentication
 gem 'google-api-client', :require => 'google/api_client'
