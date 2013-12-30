@@ -14,10 +14,10 @@ class PasswordResetsController < ApplicationController
   def update
   	@user = User.find_by_password_reset_token!(params[:id])
   	respond_to do |format|
-  		if @user.password_reset_sent_at < 2.hours.ago
+  		if @user && @user.password_reset_sent_at < 2.hours.ago
   			format.js { render 'expired' }
-  		elsif @user.update_attributes(params[:user])
-				format.html { redirect_to root_url }
+  		elsif  @user && @user.update_attributes(params[:user])
+				format.js {render 'sessions/redirect' }
 			else
 				format.js {}
   		end

@@ -8,7 +8,7 @@ GiveMeTime::Application.routes.draw do
   resources :users, :only => [:new, :create, :show, :edit, :update]
   resource :admin, :only => :show
   resource :home, :only => :index
-  resource :password_resets, :only => [:create, :edit, :update]
+  resources :password_resets, :only => [:create, :edit, :update]
 
   resources :calendar, :only => :index
   resources :events, :only => [:new, :create, :show, :edit, :update, :destroy]
