@@ -8,7 +8,6 @@
 <% if event['status'] == 'cancelled' %>
 <!-- TODO: Remove the existing event  -->
 <% else %>
-
 <%
 	start_time = event['start']['dateTime'].in_time_zone(current_user.time_zone)
 	#start_time = round_up_qh(start_time)
@@ -23,8 +22,7 @@
 	#duration as height is duration(seconds) divide by sec in min / mins in block * height of block
 %>
 
-
-<div class="calendar_event block" style="top: <%= start_time_blocks * block_height %>px; height: <%= duration_as_height %>px;">
+<div id="event_<%= id %>" class="calendar_event block" style="top: <%= start_time_blocks * block_height %>px; height: <%= duration_as_height %>px;">
 	<%= event['summary'] %>
 </div>
 

@@ -1,7 +1,7 @@
 <% title = @event['summary'] %>
 <% duration = @event["end"]["dateTime"] - @event["start"]["dateTime"] %>
 <% start = @event["start"]["dateTime"].utc %>
-$('#event_container').append("<%= j render(:partial => 'events/event', :locals => {event: @event}) %>").trigger('append_event', [ '<%= title %>', '<%= duration %>', '<%= start %>'] );
+$('#event_container').append("<%= j render(:partial => 'events/event', :locals => {event: @event, id: @event_id }) %>").trigger('append_event', [ '<%= title %>', '<%= duration %>', '<%= start %>'] );
 
 <% if source == :todo %>
 	//remove corresponding todo from list

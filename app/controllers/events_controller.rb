@@ -13,6 +13,7 @@ class EventsController < ApplicationController
 				puts event.errors.full_messages.first
 			end
 			@event = result.data
+			@event_id = event.id
 			respond_to do |format|
   			format.js { render :locals => { :source => :event } }
 			end

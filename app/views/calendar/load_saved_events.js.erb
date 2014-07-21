@@ -1,0 +1,7 @@
+<% @result.data.items.each do |item| %>
+	<% title = item['summary'] %>
+	<% start_time = item['start']['dateTime'].utc %>
+	<% duration = item['end']['dateTime'] - start_time %>
+	<% id =  @etag_to_id_map[item['etag']] %>
+	$('#event_container').append("<%= j render(:partial => 'events/event', :locals => {event: item, id: id}) %>").trigger('append_event', [ "<%= title %>", "<%= duration %>", "<%= start_time %>"] );
+<% end %>

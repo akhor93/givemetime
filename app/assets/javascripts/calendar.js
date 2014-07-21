@@ -30,7 +30,7 @@ $(document).ready(function() {
 	//Set increment for activity badge
 	$('#activity_container').on('prepend_activity',function() {$('#activity_count_badge').html(parseInt($('#activity_count_badge').html(), 10) +1);});
 
-	load_google_events();
+	load_saved_events();
 });
 
 //Objects
@@ -149,8 +149,8 @@ function reset_quick_form(type) {
 }
 
 //Ajax Functions
-function load_google_events() {
-	$.ajax('/load_google_events');
+function load_saved_events() {
+	$.ajax('/load_saved_events');
 }
 
 //Utility

@@ -33,8 +33,11 @@ class TodosController < ApplicationController
 				event.google_etag = result.data['etag']
 				event.user_id = current_user.id
 				event.allocated = true;
-				event.save
+				unless event.save
+					puts event.errors.full_messages.first
+				end
 				@event = result.data
+				@event_id = event.id
 				respond_to do |format|
   				format.js { render 'events/create', :locals => { :source => :todo, :id => todo_id} }
 				end

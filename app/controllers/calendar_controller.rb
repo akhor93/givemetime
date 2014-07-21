@@ -14,7 +14,6 @@ class CalendarController < ApplicationController
 
     @day = Day.new(Time.zone.now)
     @base_time = day_start(@day.time)
-    puts @base_time.inspect
     #Below is for debugging. Need to insert @result for use in debugging
     day_start = day_start(@day.time)
     day_end = day_end(@day.time)
@@ -30,7 +29,7 @@ class CalendarController < ApplicationController
                               :authorization => user_credentials)
   end
 
-  def load_google_events
+  def load_saved_events
     @day = Day.new(Time.zone.now)
     day_start = day_start(@day.time)
     day_end = day_end(@day.time)
@@ -47,6 +46,7 @@ class CalendarController < ApplicationController
     
     current_time = Time.zone.now
     google_ids = Set.new
+    @etag_to_id_map = Hash.new
     @result.data.items.each do |item|
       google_ids.add(item['etag'])
       event = Event.find_by google_etag: item['etag']
@@ -63,9 +63,12 @@ class CalendarController < ApplicationController
         event.allocated = true
         if event.save
           puts "event saved"
+          @etag_to_id_map[event.google_etag] = event.id
         else
           puts event.errors.full_messages.first
         end
+      else
+        @etag_to_id_map[event.google_etag] = event.id
       end
     end
     clean_events(google_ids)
@@ -74,7 +77,7 @@ class CalendarController < ApplicationController
       if @result
         format.js {}
       else
-        puts "problem getting google events. Change to alert message"
+        puts "problem getting saved events. Change to alert message"
       end
     end
   end
